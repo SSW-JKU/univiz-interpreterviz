@@ -7,6 +7,7 @@ services:
       - "127.0.0.1:3004:3000"
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.scope=interpreterviz"
 
   interpreterviz-watchtower:
     image: containrrr/watchtower:latest
@@ -14,6 +15,8 @@ services:
     restart: unless-stopped
     environment:
       DOCKER_API_VERSION: "1.44"
-    command: --interval 120 --cleanup --label-enable
+    command: --interval 120 --cleanup --label-enable --scope interpreterviz
+    labels:
+      - "com.centurylinklabs.watchtower.scope=interpreterviz"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
