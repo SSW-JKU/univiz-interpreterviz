@@ -106,8 +106,9 @@ sudo docker compose up -d --remove-orphans
 sudo docker compose ps
 ```
 
-For HTTPS, add the block from [`deploy/Caddyfile.example`](deploy/Caddyfile.example)
-to the host's Caddy configuration, replacing the domain if necessary:
+For HTTPS, for example if you host your website using Caddy, add the block from
+[`deploy/Caddyfile.example`](deploy/Caddyfile.example) to the host's Caddy
+configuration, replacing the domain if necessary:
 
 ```caddy
 interpreter.univiz.org {
@@ -115,11 +116,28 @@ interpreter.univiz.org {
 }
 ```
 
-After DNS points the domain to the server, validate and reload Caddy:
+After DNS points the domain to the server, reload Caddy:
 
 ```bash
-sudo caddy validate --config /etc/caddy/Caddyfile
 sudo systemctl reload caddy
+```
+
+If you use nginx instead, add this `location` block to the existing HTTPS
+`server` block for your domain:
+
+```nginx
+location / {
+  proxy_pass http://127.0.0.1:3004;
+  proxy_set_header Host $host;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_set_header X-Forwarded-Proto $scheme;
+}
+```
+
+Then reload nginx:
+
+```bash
+sudo systemctl reload nginx
 ```
 
 Commits pushed to `main` or `master` trigger

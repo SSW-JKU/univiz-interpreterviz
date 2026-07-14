@@ -229,7 +229,7 @@ sudo docker compose up -d --remove-orphans
 sudo docker compose ps
 \end{lstlisting}
 
-The loopback binding prevents direct public access. The included \texttt{Caddyfile.example} lets a host-level Caddy\footnote{Caddy \url{https://caddyserver.com/}} instance provide HTTPS (replace the domain if needed):
+The loopback binding prevents direct public access. Any HTTPS reverse proxy can expose the application. For example, if the host uses Caddy\footnote{Caddy \url{https://caddyserver.com/}}, add the included \texttt{Caddyfile.example} block (replace the domain if needed):
 
 \begin{lstlisting}[language={},numbers=none,basicstyle=\ttfamily\scriptsize]
 interpreter.univiz.org {
@@ -237,7 +237,7 @@ interpreter.univiz.org {
 }
 \end{lstlisting}
 
-After DNS points to the server, add the block to Caddy and reload it. Watchtower then installs future image updates automatically; download the Compose file again only when its service configuration changes.
+After DNS points to the server, add the block to Caddy and reload it. If the host uses nginx instead, configure its HTTPS server to proxy to \texttt{http://127.0.0.1:3004}; the repository README provides complete examples for both reverse proxies.
 
 \section{A Guided Tour Through our\\Visualization Tool}
 
