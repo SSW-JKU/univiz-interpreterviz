@@ -1,0 +1,199 @@
+------
+source
+program Test
+	class Inner3 {
+		int[] i;
+		char[] ch;
+	}
+
+	class Inner2 {
+		Inner3[] a;
+	}
+
+	class Inner1 {
+		Inner2[] a;
+	}
+
+	Inner1[] arr;
+{
+    void main() {}
+}
+------
+value = initialPointers
+{
+  "pc": 0,
+  "esp": 0,
+  "fp": 0,
+  "free": 1,
+  "sp": 0
+}
+------
+value = scope
+{
+  "symbolTypes": [
+    {
+      "id": 0,
+      "kind": "atomic",
+      "name": "Int",
+      "line": -1,
+      "arrayDepth": 0,
+      "variables": []
+    },
+    {
+      "id": 1,
+      "kind": "atomic",
+      "name": "Char",
+      "line": -1,
+      "arrayDepth": 0,
+      "variables": []
+    },
+    {
+      "id": 3,
+      "kind": "array",
+      "name": "Int[]",
+      "line": -1,
+      "arrayDepth": 1,
+      "itemTypeId": 0,
+      "variables": []
+    },
+    {
+      "id": 4,
+      "kind": "array",
+      "name": "Char[]",
+      "line": -1,
+      "arrayDepth": 1,
+      "itemTypeId": 1,
+      "variables": []
+    },
+    {
+      "id": 2,
+      "kind": "struct",
+      "name": "Inner3",
+      "line": 3,
+      "arrayDepth": 0,
+      "variables": [
+        {
+          "name": "i",
+          "symbolTypeId": 3,
+          "address": 0,
+          "initialValue": 0,
+          "isParameter": false
+        },
+        {
+          "name": "ch",
+          "symbolTypeId": 4,
+          "address": 1,
+          "initialValue": 0,
+          "isParameter": false
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "kind": "array",
+      "name": "Inner3[]",
+      "line": -1,
+      "arrayDepth": 1,
+      "itemTypeId": 2,
+      "variables": []
+    },
+    {
+      "id": 5,
+      "kind": "struct",
+      "name": "Inner2",
+      "line": 8,
+      "arrayDepth": 0,
+      "variables": [
+        {
+          "name": "a",
+          "symbolTypeId": 6,
+          "address": 0,
+          "initialValue": 0,
+          "isParameter": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "kind": "array",
+      "name": "Inner2[]",
+      "line": -1,
+      "arrayDepth": 1,
+      "itemTypeId": 5,
+      "variables": []
+    },
+    {
+      "id": 7,
+      "kind": "struct",
+      "name": "Inner1",
+      "line": 12,
+      "arrayDepth": 0,
+      "variables": [
+        {
+          "name": "a",
+          "symbolTypeId": 8,
+          "address": 0,
+          "initialValue": 0,
+          "isParameter": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "kind": "array",
+      "name": "Inner1[]",
+      "line": -1,
+      "arrayDepth": 1,
+      "itemTypeId": 7,
+      "variables": []
+    }
+  ],
+  "programName": "Test",
+  "methods": [
+    {
+      "name": "main",
+      "line": -1,
+      "locals": []
+    }
+  ],
+  "globals": [
+    {
+      "name": "arr",
+      "symbolTypeId": 9,
+      "address": 0,
+      "initialValue": 0,
+      "isParameter": false
+    }
+  ]
+}
+------
+start
+------
+operation
+operation.args = "51"
+operation.code = 51
+operation.name = "enter"
+operation.pc = 1
+operation.line = 17
+vizop = "enter"
+psize = 0
+lsize = 0
+------
+operation
+operation.args = "0,0,52"
+operation.code = 52
+operation.name = "exit"
+operation.pc = 4
+operation.line = 18
+vizop = "exit"
+------
+operation
+operation.args = "50"
+operation.code = 50
+operation.name = "return"
+operation.pc = 5
+operation.line = 18
+vizop = "return"
+newPC = 5
+exit = true
+

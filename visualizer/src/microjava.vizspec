@@ -1,0 +1,922 @@
+########################
+# REGIONS              #
+########################
+
+declare region code {
+  name = "Static Data / Global"
+  type = "code"
+  entrySize = 0
+  [[pointers]]
+    name = "code"
+    type = "root_pointer"
+  [[pointers]]
+    name = "pc"
+    type = "code_pointer"
+}
+
+declare region estack {
+  name = "Expression Stack"
+  type = "stack"
+  isExpressionStack = true
+  entrySize = 4
+  [[pointers]]
+    name = "estack"
+    type = "root_pointer"
+  [[pointers]]
+    name = "esp"
+    type = "stack_pointer"
+}
+
+declare region local {
+  name = "Method Stack"
+  type = "stack"
+  kind = "method_stack"
+  entrySize = 4
+  [[pointers]]
+      name = "pstack"
+      type = "root_pointer"
+  [[pointers]]
+      name = "fp"
+  [[pointers]]
+      name = "sp"
+      type = "stack_pointer"
+}
+
+declare region heap {
+  name = "Heap"
+  type = "addressable"
+  entrySize = 4
+  [[pointers]]
+    name = "heap"
+    type = "root_pointer"
+  [[pointers]]
+    name = "free"
+}
+
+declare region data {
+  name = "Static Data / Global"
+  type = "addressable"
+  kind = "global"
+  entrySize = 4
+  [[pointers]]
+    name = "data"
+    type = "root_pointer"
+}
+
+########################
+# TYPES                #
+########################
+
+declare type value {
+  name = "Value"
+  kind = "memory"
+  display = "value"
+}
+
+declare type pointer_heap {
+  name = "Value"
+  kind = "pointer"
+  region = "heap"
+  display = "value"
+}
+
+declare type return_pc {
+  name = "Return PC"
+  kind = "memory"
+  display = "special"
+}
+
+declare type stored_fp {
+  name = "Stored FP"
+  kind = "memory"
+  display = "special"
+}
+
+declare type array_size {
+  name = "Array Size"
+  kind = "memory"
+  display = "special"
+}
+
+declare type null_pointer {
+  name = "Null Pointer"
+  kind = "memory"
+  display = "special"
+}
+
+declare type object {
+  name = "Object"
+  hasFields = true
+  fieldSize = 4
+  kind = "object"
+}
+
+declare type array {
+  name = "Array"
+  hasFields = true
+  fieldSize = 4
+  kind = "array"
+}
+
+########################
+# FUNCTIONS            #
+########################
+
+function getParts (entry) {
+  let numericName = entry.getName('numeric');
+  let symbolicName = entry.getName('symbolic');
+
+  let value = entry.getValue();
+
+  if (numericName && (!/^\d+$/.test(numericName) && !numericName.startsWith('('))) {
+    // If the numeric name is not a number, use the value
+    numericName = String(value);
+  }
+
+  if (!numericName) return { numeric: String(value), symbolic: String(value) };
+  return { numeric: numericName, symbolic: symbolicName };
+}
+
+function opName (operation, leftEntry, rightEntry) {
+  let left = getParts(leftEntry);
+  let right = getParts(rightEntry);
+
+  return {
+    numeric: `(${left.numeric} ${operation} ${right.numeric})`,
+    symbolic: `(${left.symbolic} ${operation} ${right.symbolic})`,
+    original: `(${left.symbolic} ${operation} ${right.symbolic})`
+  }
+}
+
+function numberToAscii (number) {
+  let str = String.fromCharCode(number);
+
+  let backslashMap = {
+    '\n': '\\n',
+    '\r': '\\r',
+    '\t': '\\t',
+    '\v': '\\v',
+    '\b': '\\b',
+    '\f': '\\f',
+    '\0': '\\0',
+    '\\': '\\\\',
+    '\'': '\\\'',
+    '\"': '\\"'
+  }
+
+  return backslashMap[str] ?? str;
+}
+
+########################
+# INIT                 #
+########################
+
+init {
+  // Set initial pointers
+  initPointers(JSON.parse(initialPointers));
+
+  // Set the full bytecode
+  setBytecode(JSON.parse(bytecode));
+
+  if (typeof reference == 'string') {
+    // Set the reference bytecode
+    setReferenceBytecode(JSON.parse(reference));
+  }
+
+  // Set symbol types
+  let symbolInfo = JSON.parse(symbolTypes);
+  setSymbolTypes(symbolInfo.symbolTypes);
+
+  setValue('methods', symbolInfo.methods);
+
+  setValue('constants', symbolInfo.constants);
+
+  setValue('symbolTypes', symbolInfo.symbolTypes);
+
+  getRegion('data').setGlobals(symbolInfo.globals.map(g => ({
+    ...g,
+    size: 4,
+    type: 'value',
+    symbolType: g.symbolTypeId
+  })));
+
+  getRegion('heap').set(0, createEntry({ type: 'null_pointer', value: 0, size: 4 }));
+}
+
+########################
+# OPERATIONS           #
+########################
+
+operation load {
+  name = "Load"
+  animationHint = "load_operation"
+  [[input]]
+    name = "address"
+    type = "number"
+} with action {
+  let fp = getPointer('fp');
+  let entry = getRegion('local').get(fp + address);
+
+  getRegion('estack').push(entry);
+}
+  
+operation store {
+  name = "Store"
+  [[input]]
+    name = "address"
+    type = "number"
+} with action {
+  let entry = getRegion('estack').pop();
+  let fp = getPointer('fp');
+
+  getRegion('local').set(fp + address, entry);
+}
+
+operation getstatic {
+  name = "Get Static"
+  animationHint = "load_operation"
+  [[input]] 
+    name = "address"
+    type = "number"
+} with action {
+  let entry = getRegion('data').get(address);
+
+  getRegion('estack').push(entry);
+}
+
+operation putstatic {
+  name = "Put Static"
+  [[input]]
+    name = "address"
+    type = "number"
+} with action {
+  let entry = getRegion('estack').pop();
+
+  getRegion('data').set(address, entry);
+}
+
+operation getfield {
+  name = "Get Field"
+  animationHint = "load_operation"
+  [[input]]
+    name = "address"
+    type = "number"
+} with action {
+  let addr = getRegion('estack').pop().getValue();
+
+  let objectEntry = getRegion('heap').get(addr);
+  let fieldEntry = objectEntry.getField(address);
+
+  getRegion('estack').push(fieldEntry);
+}
+
+operation putfield {
+  name = "Put Field"
+  [[input]]
+    name = "address"
+    type = "number"
+} with action {
+  let valueEntry = getRegion('estack').pop();
+  let addr = getRegion('estack').pop().getValue();
+
+  let objectEntry = getRegion('heap').get(addr);
+  objectEntry.setField(address, createModifiedEntry(valueEntry));
+}
+
+operation const {
+  name = "Constant"
+  [[input]]
+    name = "value"
+    type = "number"
+} with action {
+  let es = getRegion('estack');
+
+  let constant = constants.find(c => c.initialValue == value && sourceLine.includes(c.name));
+  let symbolType = symbolTypes.find(s => s.id == constant?.symbolTypeId);
+
+  let isChar = symbolType?.name == 'char';
+  if (!isChar && sourceLine.includes(`'${numberToAscii(value)}'`)) {
+    symbolType = symbolTypes.find(s => s.name == 'char');
+    isChar = true;
+  }
+
+  es.push(createEntry({
+    symbolType: symbolType?.name ?? 'int',
+    type: 'value',
+    value: value,
+    size: 4,
+    name: isChar ? `'${numberToAscii(value)}'` : undefined
+  }));
+}
+
+operation add {
+  name = "Add"
+} with action {
+  let es = getRegion('estack');
+
+  let ent2 = es.pop();
+  let ent1 = es.pop();
+  let resultValue = ent1.getValue() + ent2.getValue();
+
+  es.push(createEntry({
+    type: 'value',
+    symbolType: 'int',
+    size: 4,
+    value: resultValue,
+    name: opName('+', ent1, ent2)
+  }));
+}
+
+operation sub {
+  name = "Subtract"
+} with action {
+  let es = getRegion('estack');
+
+  let ent2 = es.pop();
+  let ent1 = es.pop();
+  let resultValue = ent1.getValue() - ent2.getValue();
+
+  es.push(createEntry({
+    type: 'value',
+    symbolType: 'int',
+    size: 4,
+    value: resultValue,
+    name: opName('-', ent1, ent2)
+  }));
+}
+
+operation mul {
+  name = "Multiply"
+} with action {
+  let es = getRegion('estack');
+
+  let ent2 = es.pop();
+  let ent1 = es.pop();
+  let resultValue = ent1.getValue() * ent2.getValue();
+
+  es.push(createEntry({
+    type: 'value',
+    symbolType: 'int',
+    size: 4,
+    value: resultValue,
+    name: opName('*', ent1, ent2)
+  }));
+}
+
+operation div {
+  name = "Divide"
+} with action {
+  let es = getRegion('estack');
+
+  let ent2 = es.pop();
+  let ent1 = es.pop();
+  let resultValue = Math.floor(ent1.getValue() / ent2.getValue());
+
+  es.push(createEntry({
+    type: 'value',
+    symbolType: 'int',
+    size: 4,
+    value: resultValue,
+    name: opName('/', ent1, ent2)
+  }));
+}
+
+operation rem {
+  name = "Remainder"
+} with action {
+  let es = getRegion('estack');
+
+  let ent2 = es.pop();
+  let ent1 = es.pop();
+  let resultValue = ent1.getValue() % ent2.getValue();
+
+  es.push(createEntry({
+    type: 'value',
+    symbolType: 'int',
+    size: 4,
+    value: resultValue,
+    name: opName('%', ent1, ent2)
+  }));
+}
+
+operation neg {
+  name = "Negate"
+} with action {
+  let es = getRegion('estack');
+
+  let ent = es.pop();
+  let resultValue = -ent.getValue();
+
+  es.push(createEntry({
+    type: 'value',
+    symbolType: 'int',
+    size: 4,
+    value: resultValue,
+    name: `-(${entryName(ent)})`
+  }));
+}
+
+operation shl {
+  name = "Shift Left"
+} with action {
+  let es = getRegion('estack');
+
+  let ent2 = es.pop();
+  let ent1 = es.pop();
+  let resultValue = ent1.getValue() << ent2.getValue();
+
+  es.push(createEntry({
+    type: 'value',
+    symbolType: 'int',
+    size: 4,
+    value: resultValue,
+    name: opName('<<', ent1, ent2)
+  }));
+}
+
+operation shr {
+  name = "Shift Right"
+} with action {
+  let es = getRegion('estack');
+
+  let ent2 = es.pop();
+  let ent1 = es.pop();
+  let resultValue = ent1.getValue() >> ent2.getValue();
+
+  es.push(createEntry({
+    type: 'value',
+    symbolType: 'int',
+    size: 4,
+    value: resultValue,
+    name: opName('>>', ent1, ent2)
+  }));
+}
+
+# local[b1] = local[b1] + b2;
+operation inc {
+  name = "Increment"
+  [[input]]
+    name = "b1"
+    type = "number"
+  [[input]]
+    name = "b2"
+    type = "number"
+} with action {
+  let fp = getPointer('fp');
+  let off = fp + b1;
+
+  let entry = getRegion('local').get(off);
+  let val = entry.getValue();
+  entry.setValue(val + b2);
+}
+
+operation new {
+  name = "New Object"
+  [[input]]
+    name = "allocSize"
+    type = "number"
+  [[input]]
+    name = "fields"
+    type = "number"
+  [[input]]
+    # The interpreter does some complicated stuff with the free pointer
+    # So we just pass the updated free pointer as an argument
+    name = "nextFree"
+    type = "number"
+} with action {
+  let type = symbolTypes.find(s => s.kind == 'struct' && s.uses?.includes(operation.line));
+  // if (!type) type = symbolTypes.find(s => s.kind == 'struct' && sourceLine.includes(s.name));
+
+  let name = type?.name ?? 'Object';
+
+  let heap = getRegion('heap');
+  let es = getRegion('estack');
+
+  // Get and update free pointer
+  let addr = getPointer('free');
+  setPointer('free', nextFree);
+
+  // Create entry
+  let objectEntry = createEntry({ type: 'object', value: addr, size: allocSize, name, symbolType: type?.id });
+  heap.set(addr, objectEntry);
+
+  for (let i = 0; i < fields; i++) {
+    let variable = type?.variables.find(v => v.address == i);
+    
+    objectEntry.setField(i, createEntry({ type: 'value', value: 0, size: 4, symbolType: variable?.symbolTypeId }));
+  }
+
+  // Push address to estack
+  es.push(createEntry({ type: 'pointer_heap', value: addr, size: 4, name, symbolType: type?.id }));
+}
+
+operation newarray {
+  name = "New Array"
+  [[input]]
+    name = "isByte"
+    type = "boolean"
+  [[input]]
+    name = "allocSize"
+    type = "number"
+  [[input]]
+    name = "nextFree"
+    type = "number"
+  [[input]]
+    name = "length"
+    type = "number"
+} with action {
+  let innerType = symbolTypes.find(s => s.kind == 'struct' && s.uses?.includes(operation.line));
+  // if (!innerType) innerType = symbolTypes.find(s => s.kind == 'struct' && sourceLine.includes(s.name));
+  if (!innerType || isByte) {
+    innerType = symbolTypes.find(s => s.kind == 'atomic' && s.name == (isByte ? 'char' : 'int'));
+  }
+
+  let isStruct = innerType.kind == 'struct';
+
+  let outerType = symbolTypes.find(s => s.kind == 'array' && s.name == `${innerType.name}[]`) ?? innerType;
+
+  let heap = getRegion('heap');
+  let es = getRegion('estack');
+
+  es.pop(); // Pop the length
+
+  // Get and update free pointer
+  let addr = getPointer('free');
+  setPointer('free', nextFree);
+
+  // Create entry
+  let arrayEntry = createEntry({ 
+    type: 'array', 
+    value: addr, 
+    size: allocSize, 
+    name: outerType.name, 
+    symbolType: outerType.id, 
+    arrayLength: length, 
+    arrayStartOffset: 1,
+    arraySymbolType: innerType.id
+  });
+  heap.set(addr, arrayEntry);
+
+  // Add length to array
+  arrayEntry.setField(0, createEntry({ type: 'array_size', value: length, size: 4 }));
+
+  // Initialize array
+  for (let i = 0; i < length; i++) {
+    let size = isByte ? 1 : 4;
+    let slice = isByte ? (i % 4) : 0;
+    let address = (isByte ? (i - slice) : i) + 1;
+    
+    arrayEntry.setField([address, slice], createEntry({ 
+      type: isStruct ? 'pointer_heap' : 'value', 
+      value: 0, 
+      size,
+      symbolType: innerType.id,
+      name: isStruct ? 'null' : undefined
+    }));
+  }
+
+  // Push address to estack
+  let addrEntry = createEntry({ 
+    type: 'pointer_heap', 
+    value: addr + 1, 
+    size: 4, 
+    // name: outerType.name, 
+    symbolType: outerType.id 
+  });
+  getRegion('estack').push(addrEntry);
+}
+
+operation aload {
+  name = "Array Load"
+  animationHint = "load_operation"
+} with action {
+  let heap = getRegion('heap');
+  let es = getRegion('estack');
+
+  // +1 because the first field is the length
+  let index = es.pop().getValue() + 1;
+  let addr = es.pop().getValue();
+
+  let arrayEntry = heap.get(addr - 1);
+  let valueEntry = arrayEntry.getField(index);
+
+  es.push(valueEntry);
+}
+
+operation astore {
+  name = "Array Store"
+} with action {
+  let heap = getRegion('heap');
+  let es = getRegion('estack');
+
+  let valueEntry = es.pop();
+
+  // +1 because the first field is the length
+  let index = es.pop().getValue() + 1;
+  let addr = es.pop().getValue();
+
+  let arrayEntry = heap.get(addr - 1);
+  arrayEntry.setField(index, valueEntry);
+}
+
+operation bastore {
+  name = "Byte Array Store"
+} with action {
+  let heap = getRegion('heap');
+  let es = getRegion('estack');
+
+  let valueEntry = es.pop();
+
+  // +1 because the first field is the length
+  let index = es.pop().getValue();
+  let arrayAddress = es.pop().getValue();
+
+  let entrySlice = index % 4;
+  let entryAddress = (index - entrySlice) + 1;
+
+  let value = valueEntry.getValue();
+  let byte = value & 0xFF;
+
+  let valueEntryByte = createModifiedEntry(valueEntry);
+  valueEntryByte.setValue(byte);
+  valueEntryByte.setName(`'${numberToAscii(byte)}'`);
+  valueEntryByte.setSize(1);
+  valueEntryByte.setSymbolType('char');
+  valueEntryByte.setType('value');
+
+  let arrayEntry = heap.get(arrayAddress - 1);
+  arrayEntry.setField([entryAddress, entrySlice], valueEntryByte);
+}
+
+operation baload {
+  name = "Byte Array Load"
+  animationHint = "load_operation"
+} with action {
+  let heap = getRegion('heap');
+  let es = getRegion('estack');
+
+  let index = es.pop().getValue();
+  let arrayAddress = es.pop().getValue();
+
+  let entrySlice = index % 4;
+  let entryAddress = (index - entrySlice) + 1;
+
+  let arrayEntry = heap.get(arrayAddress - 1);
+  let valueEntry = arrayEntry.getField([entryAddress, entrySlice]);
+
+  es.push(valueEntry);
+}
+
+operation arraylength {
+  name = "Array Length"
+  animationHint = "load_operation"
+} with action {
+  let heap = getRegion('heap');
+  let es = getRegion('estack');
+
+  let addr = es.pop().getValue();
+
+  let arrayEntry = heap.get(addr - 1);
+  let lengthEntry = arrayEntry.getField(0);
+
+  es.push(lengthEntry);
+}
+
+operation pop {
+  name = "Pop"
+} with action {
+  getRegion('estack').pop();
+}
+
+operation dup {
+  name = "Duplicate"
+} with action {
+  let entry = getRegion('estack').pop();
+  getRegion('estack').push(entry);
+  getRegion('estack').push(entry.clone());
+}
+
+operation dup2 {
+  name = "Duplicate 2"
+} with action {
+  let entry1 = getRegion('estack').pop();
+  let entry2 = getRegion('estack').pop();
+
+  getRegion('estack').push(entry2);
+  getRegion('estack').push(entry1);
+  getRegion('estack').push(entry2.clone());
+  getRegion('estack').push(entry1.clone());
+}
+
+operation jmp {
+  name = "Jump"
+  highlightJumps = true
+  [[input]]
+    name = "newPC"
+    type = "number"
+} with action {
+  setPointer('pc', newPC);
+}
+
+operation optional_jump {
+  name = "Optional Jump - {{operation.identifier}}"
+  alias = ["jeq", "jne", "jlt", "jle", "jgt", "jge"]
+  highlightJumps = true
+  [[input]]
+    name = "newPC"
+    type = "number"
+  [[input]]
+    name = "condition"
+    type = "boolean"
+} with action {
+  let entry2 = getRegion('estack').pop();
+  let entry1 = getRegion('estack').pop();
+
+  if (condition) {
+    setPointer('pc', newPC);
+  }
+}
+
+operation call {
+  name = "Call"
+  highlightNextForCall = true
+  [[input]]
+    name = "newPC"
+    type = "number"
+} with action {
+  let localRegion = getRegion('local');
+  let currentPC = getPointer('pc');
+
+  localRegion.push(createEntry({ type: 'return_pc', value: currentPC, size: 4 }));
+
+  setPointer('pc', newPC);
+}
+
+operation return {
+  name = "Return"
+  highlightNextForCall = true
+} with action {
+  let sp = getPointer('sp');
+  let localRegion = getRegion('local');
+
+  if (sp != 0) {
+    let returnPC = localRegion.pop().getValue();
+    setPointer('pc', returnPC);
+  } else {
+    log('End of program');
+  }
+
+  localRegion.closeFunction();
+}
+
+operation enter {
+  name = "Enter"
+  animationHint = "enter_operation"
+  [[input]]
+    name = "psize"
+    type = "number"
+  [[input]]
+    name = "lsize"
+    type = "number"
+} with action {
+  let localRegion = getRegion('local');
+
+  // let currentMethod = methods.find(m => m.line == operation.line);
+
+  let currentMethod;
+  if (sourceLine.includes(' main ')) {
+    currentMethod = methods.find(m => m.name == 'main');
+  }
+
+  if (!currentMethod) {
+    currentMethod = methods.find(m => sourceLine.includes(` ${m.name} `));
+  }
+
+  if (!currentMethod) {
+    for (let methodLine = operation.line + 1; methodLine > 0 && (operation.line - methodLine) < 10; methodLine--) {
+      let method = methods.find(m => m.line == methodLine);
+      if (method) {
+        currentMethod = method;
+        break;
+      }
+    }
+  }
+
+  if (currentMethod) {
+    localRegion.openFunction({
+      name: currentMethod.name,
+      line: currentMethod.line,
+      locals: currentMethod.locals,
+      localsStartOffset: 1
+    });
+  }
+
+  // Remember old FP
+  let oldFP = getPointer('fp');
+  let oldFPEntry = createEntry({ type: 'stored_fp', value: oldFP, size: 4 })
+  localRegion.push(oldFPEntry);
+
+  // Set new FP
+  let sp = getPointer('sp');
+  setPointer('fp', sp);
+  let fp = getPointer('fp');
+
+  // Allocate space for local variables
+  for (let i = 0; i < lsize; i++) {
+    localRegion.push(createEntry({ type: 'value', value: 0, size: 4 }));
+  }
+
+  sp = getPointer('sp');
+  if (sp != (fp + lsize)) throw new Error('Local variables not allocated correctly');
+
+  // Allocate space for parameters
+  for (let i = psize - 1; i >= 0; i--) {
+    let entry = getRegion('estack').pop();
+    localRegion.set(fp + i, entry);
+  }
+}
+
+operation exit {
+  name = "Exit"
+} with action {
+  // Restore SP
+  let newSP = getPointer('fp');
+  setPointer('sp', newSP);
+
+  // Restore FP
+  let newFP = getRegion('local').pop().getValue();
+  setPointer('fp', newFP);
+}
+
+operation read {
+  name = "Read"
+  [[input]]
+    name = "value"
+    type = "number"
+} with action {
+  let es = getRegion('estack');
+  es.push(createEntry({
+    type: 'value',
+    symbolType: 'int',
+    size: 4,
+    value,
+    name: String(value),
+  }));
+}
+
+operation bread {
+  name = "Read Byte
+  [[input]]
+    name = "value"
+    type = "number"
+} with action {
+  let es = getRegion('estack');
+  es.push(createEntry({
+    type: 'value',
+    symbolType: 'char',
+    size: 4,
+    value,
+    name: `'${numberToAscii(value)}'`,
+  }));
+}
+
+operation print {
+  name = "Print"
+  [[input]]
+    name = "value"
+    type = "string"
+} with action {
+  getRegion('estack').pop();
+  getRegion('estack').pop();
+
+  let str = String(value ?? '');
+  if (str.length) log(`Print: ${str}`);
+}
+
+operation bprint {
+  name = "Print Byte"
+  [[input]]
+    name = "value"
+    type = "string"
+} with action {
+  getRegion('estack').pop();
+  getRegion('estack').pop();
+
+  let str = String(value ?? '');
+  if (str.length) log(`Print: ${str}`);
+}
+
+operation nop {
+  name = "No Operation"
+} with action {
+  // Do nothing
+}
+
+operation trap {
+  name = "Trap"
+  [[input]]
+    name = "val"
+    type = "number"
+} with action {
+  fatal(message);
+}

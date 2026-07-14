@@ -1,0 +1,328 @@
+------
+source
+program Test
+	int v1;
+	int v2;
+	int v3;
+
+	final int const1 = 3;
+	final char const2 = 'w';
+{
+    int fun(int i) {
+        return i * 2;
+    }
+
+	void main () {
+		v1 = const1;
+		v1++;
+
+		v2 = fun(v1);
+
+		v3 = v1 + v2;
+
+		print(v3);
+	}
+}
+------
+value = initialPointers
+{
+  "pc": 10,
+  "esp": 0,
+  "fp": 0,
+  "free": 1,
+  "sp": 0
+}
+------
+value = scope
+{
+  "symbolTypes": [
+    {
+      "id": 0,
+      "kind": "atomic",
+      "name": "Int",
+      "line": -1,
+      "arrayDepth": 0,
+      "variables": []
+    },
+    {
+      "id": 1,
+      "kind": "atomic",
+      "name": "Char",
+      "line": -1,
+      "arrayDepth": 0,
+      "variables": []
+    }
+  ],
+  "programName": "Test",
+  "methods": [
+    {
+      "name": "fun",
+      "line": 9,
+      "locals": [
+        {
+          "name": "i",
+          "symbolTypeId": 0,
+          "address": 0,
+          "initialValue": 0,
+          "isParameter": true
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "line": 88,
+      "locals": []
+    }
+  ],
+  "globals": [
+    {
+      "name": "v1",
+      "symbolTypeId": 0,
+      "address": 0,
+      "initialValue": 0,
+      "isParameter": false
+    },
+    {
+      "name": "v2",
+      "symbolTypeId": 0,
+      "address": 1,
+      "initialValue": 0,
+      "isParameter": false
+    },
+    {
+      "name": "v3",
+      "symbolTypeId": 0,
+      "address": 2,
+      "initialValue": 0,
+      "isParameter": false
+    }
+  ]
+}
+------
+start
+------
+operation
+operation.args = "51"
+operation.code = 51
+operation.name = "enter"
+operation.pc = 11
+operation.line = 13
+vizop = "enter"
+psize = 0
+lsize = 0
+------
+operation
+operation.args = "0,0,18"
+operation.code = 18
+operation.name = "const_3"
+operation.pc = 14
+operation.line = 14
+vizop = "const"
+value = 3
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 15
+operation.line = 14
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 18
+operation.line = 15
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 21
+operation.line = 15
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 22
+operation.line = 15
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 23
+operation.line = 15
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 26
+operation.line = 17
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,49"
+operation.code = 49
+operation.name = "call"
+operation.pc = 29
+operation.line = 17
+vizop = "call"
+offset = -28
+newPC = 0
+------
+operation
+operation.args = "-28,51"
+operation.code = 51
+operation.name = "enter"
+operation.pc = 1
+operation.line = 9
+vizop = "enter"
+psize = 1
+lsize = 1
+------
+operation
+operation.args = "1,1,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 4
+operation.line = 10
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "17"
+operation.code = 17
+operation.name = "const_2"
+operation.pc = 5
+operation.line = 10
+vizop = "const"
+value = 2
+------
+operation
+operation.args = "25"
+operation.code = 25
+operation.name = "mul"
+operation.pc = 6
+operation.line = 10
+vizop = "mul"
+------
+operation
+operation.args = "52"
+operation.code = 52
+operation.name = "exit"
+operation.pc = 7
+operation.line = 10
+vizop = "exit"
+------
+operation
+operation.args = "50"
+operation.code = 50
+operation.name = "return"
+operation.pc = 8
+operation.line = 10
+vizop = "return"
+newPC = 31
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 32
+operation.line = 17
+vizop = "putstatic"
+address = 1
+------
+operation
+operation.args = "1,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 35
+operation.line = 19
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 38
+operation.line = 19
+vizop = "getstatic"
+address = 1
+------
+operation
+operation.args = "1,23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 41
+operation.line = 19
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 42
+operation.line = 19
+vizop = "putstatic"
+address = 2
+------
+operation
+operation.args = "2,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 45
+operation.line = 21
+vizop = "getstatic"
+address = 2
+------
+operation
+operation.args = "2,15"
+operation.code = 15
+operation.name = "const_0"
+operation.pc = 48
+operation.line = 21
+vizop = "const"
+value = 0
+------
+operation
+operation.args = "54"
+operation.code = 54
+operation.name = "print"
+operation.pc = 49
+operation.line = 21
+vizop = "print"
+value = 12
+length = -2
+------
+operation
+operation.args = "52"
+operation.code = 52
+operation.name = "exit"
+operation.pc = 50
+operation.line = 23
+vizop = "exit"
+------
+operation
+operation.args = "50"
+operation.code = 50
+operation.name = "return"
+operation.pc = 51
+operation.line = 23
+vizop = "return"
+newPC = 51
+exit = true
+

@@ -1,0 +1,1827 @@
+------
+source
+program DifferentBytecodes
+    final int LEN = 3;
+
+	class Person {
+		int id;
+		int age;
+	}
+	
+	Person[] personList;
+	int personCount;
+{
+	void add(Person pers) {
+	    if (personCount >= LEN) return;
+		personList[personCount] = pers;
+		personCount++;
+	}
+
+	void printPerson(int i) {
+        if (i < 0 || i >= personCount) return;
+
+        print(personList[i].id);
+        print(personList[i].age);
+    }
+
+    void printPeople()
+        int i;
+    {
+        i = 0;
+
+        /* Loop through all people */
+        while (i < personCount) {
+            printPerson(i);
+            i++;
+        }
+    }
+
+	void main()
+		Person p;
+	{
+	    /* Init person list */
+        personList = new Person[LEN];
+
+        /* Create person */
+		p = new Person;
+		p.id = 1;
+		p.age = 30;
+
+        /* Add person to list */
+		add(p);
+
+		printPeople();
+	}
+}
+------
+value = bytecode
+[
+  {
+    "pc": 1,
+    "line": 12,
+    "vizop": "enter",
+    "opcode": "enter 1 1"
+  },
+  {
+    "pc": 4,
+    "line": 13,
+    "vizop": "getstatic",
+    "opcode": "getstatic 1"
+  },
+  {
+    "pc": 7,
+    "line": 13,
+    "vizop": "const",
+    "opcode": "const_3"
+  },
+  {
+    "pc": 8,
+    "line": 13,
+    "vizop": "optional_jump",
+    "opcode": "jlt 5"
+  },
+  {
+    "pc": 11,
+    "line": 13,
+    "vizop": "exit",
+    "opcode": "exit"
+  },
+  {
+    "pc": 12,
+    "line": 13,
+    "vizop": "return",
+    "opcode": "return"
+  },
+  {
+    "pc": 13,
+    "line": 14,
+    "vizop": "getstatic",
+    "opcode": "getstatic 0"
+  },
+  {
+    "pc": 16,
+    "line": 14,
+    "vizop": "getstatic",
+    "opcode": "getstatic 1"
+  },
+  {
+    "pc": 19,
+    "line": 14,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 20,
+    "line": 14,
+    "vizop": "astore",
+    "opcode": "astore"
+  },
+  {
+    "pc": 21,
+    "line": 15,
+    "vizop": "getstatic",
+    "opcode": "getstatic 1"
+  },
+  {
+    "pc": 24,
+    "line": 15,
+    "vizop": "const",
+    "opcode": "const_1"
+  },
+  {
+    "pc": 25,
+    "line": 15,
+    "vizop": "add",
+    "opcode": "add"
+  },
+  {
+    "pc": 26,
+    "line": 15,
+    "vizop": "putstatic",
+    "opcode": "putstatic 1"
+  },
+  {
+    "pc": 29,
+    "line": 18,
+    "vizop": "exit",
+    "opcode": "exit"
+  },
+  {
+    "pc": 30,
+    "line": 18,
+    "vizop": "return",
+    "opcode": "return"
+  },
+  {
+    "pc": 31,
+    "line": 18,
+    "vizop": "enter",
+    "opcode": "enter 1 1"
+  },
+  {
+    "pc": 34,
+    "line": 19,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 35,
+    "line": 19,
+    "vizop": "const",
+    "opcode": "const_0"
+  },
+  {
+    "pc": 36,
+    "line": 19,
+    "vizop": "optional_jump",
+    "opcode": "jlt 10"
+  },
+  {
+    "pc": 39,
+    "line": 19,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 40,
+    "line": 19,
+    "vizop": "getstatic",
+    "opcode": "getstatic 1"
+  },
+  {
+    "pc": 43,
+    "line": 19,
+    "vizop": "optional_jump",
+    "opcode": "jlt 5"
+  },
+  {
+    "pc": 46,
+    "line": 19,
+    "vizop": "exit",
+    "opcode": "exit"
+  },
+  {
+    "pc": 47,
+    "line": 19,
+    "vizop": "return",
+    "opcode": "return"
+  },
+  {
+    "pc": 48,
+    "line": 21,
+    "vizop": "getstatic",
+    "opcode": "getstatic 0"
+  },
+  {
+    "pc": 51,
+    "line": 21,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 52,
+    "line": 21,
+    "vizop": "aload",
+    "opcode": "aload"
+  },
+  {
+    "pc": 53,
+    "line": 21,
+    "vizop": "getfield",
+    "opcode": "getfield 0"
+  },
+  {
+    "pc": 56,
+    "line": 21,
+    "vizop": "const",
+    "opcode": "const_0"
+  },
+  {
+    "pc": 57,
+    "line": 21,
+    "vizop": "print",
+    "opcode": "print"
+  },
+  {
+    "pc": 58,
+    "line": 22,
+    "vizop": "getstatic",
+    "opcode": "getstatic 0"
+  },
+  {
+    "pc": 61,
+    "line": 22,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 62,
+    "line": 22,
+    "vizop": "aload",
+    "opcode": "aload"
+  },
+  {
+    "pc": 63,
+    "line": 22,
+    "vizop": "getfield",
+    "opcode": "getfield 1"
+  },
+  {
+    "pc": 66,
+    "line": 22,
+    "vizop": "const",
+    "opcode": "const_0"
+  },
+  {
+    "pc": 67,
+    "line": 22,
+    "vizop": "print",
+    "opcode": "print"
+  },
+  {
+    "pc": 68,
+    "line": 25,
+    "vizop": "exit",
+    "opcode": "exit"
+  },
+  {
+    "pc": 69,
+    "line": 25,
+    "vizop": "return",
+    "opcode": "return"
+  },
+  {
+    "pc": 70,
+    "line": 27,
+    "vizop": "enter",
+    "opcode": "enter 0 1"
+  },
+  {
+    "pc": 73,
+    "line": 28,
+    "vizop": "const",
+    "opcode": "const_0"
+  },
+  {
+    "pc": 74,
+    "line": 28,
+    "vizop": "store",
+    "opcode": "store_0"
+  },
+  {
+    "pc": 75,
+    "line": 31,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 76,
+    "line": 31,
+    "vizop": "getstatic",
+    "opcode": "getstatic 1"
+  },
+  {
+    "pc": 79,
+    "line": 31,
+    "vizop": "optional_jump",
+    "opcode": "jge 13"
+  },
+  {
+    "pc": 82,
+    "line": 32,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 83,
+    "line": 32,
+    "vizop": "call",
+    "opcode": "call -52"
+  },
+  {
+    "pc": 86,
+    "line": 33,
+    "vizop": "inc",
+    "opcode": "inc 0 1"
+  },
+  {
+    "pc": 89,
+    "line": 35,
+    "vizop": "jmp",
+    "opcode": "jmp -14"
+  },
+  {
+    "pc": 92,
+    "line": 37,
+    "vizop": "exit",
+    "opcode": "exit"
+  },
+  {
+    "pc": 93,
+    "line": 37,
+    "vizop": "return",
+    "opcode": "return"
+  },
+  {
+    "pc": 94,
+    "line": 39,
+    "vizop": "enter",
+    "opcode": "enter 0 1"
+  },
+  {
+    "pc": 97,
+    "line": 41,
+    "vizop": "const",
+    "opcode": "const_3"
+  },
+  {
+    "pc": 98,
+    "line": 41,
+    "vizop": "newarray",
+    "opcode": "newarray 1"
+  },
+  {
+    "pc": 100,
+    "line": 41,
+    "vizop": "putstatic",
+    "opcode": "putstatic 0"
+  },
+  {
+    "pc": 103,
+    "line": 44,
+    "vizop": "new",
+    "opcode": "new 2"
+  },
+  {
+    "pc": 106,
+    "line": 44,
+    "vizop": "store",
+    "opcode": "store_0"
+  },
+  {
+    "pc": 107,
+    "line": 45,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 108,
+    "line": 45,
+    "vizop": "const",
+    "opcode": "const_1"
+  },
+  {
+    "pc": 109,
+    "line": 45,
+    "vizop": "putfield",
+    "opcode": "putfield 0"
+  },
+  {
+    "pc": 112,
+    "line": 46,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 113,
+    "line": 46,
+    "vizop": "const",
+    "opcode": "const 30"
+  },
+  {
+    "pc": 118,
+    "line": 46,
+    "vizop": "putfield",
+    "opcode": "putfield 1"
+  },
+  {
+    "pc": 121,
+    "line": 49,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 122,
+    "line": 49,
+    "vizop": "call",
+    "opcode": "call -121"
+  },
+  {
+    "pc": 125,
+    "line": 51,
+    "vizop": "call",
+    "opcode": "call -55"
+  },
+  {
+    "pc": 128,
+    "line": 53,
+    "vizop": "exit",
+    "opcode": "exit"
+  },
+  {
+    "pc": 129,
+    "line": 53,
+    "vizop": "return",
+    "opcode": "return"
+  }
+]
+------
+value = reference
+[
+  {
+    "pc": 1,
+    "line": 12,
+    "vizop": "enter",
+    "opcode": "enter 1 1"
+  },
+  {
+    "pc": 4,
+    "line": 13,
+    "vizop": "getstatic",
+    "opcode": "getstatic 1"
+  },
+  {
+    "pc": 7,
+    "line": 13,
+    "vizop": "const",
+    "opcode": "const_3"
+  },
+  {
+    "pc": 8,
+    "line": 13,
+    "vizop": "optional_jump",
+    "opcode": "jlt 5"
+  },
+  {
+    "pc": 11,
+    "line": 13,
+    "vizop": "exit",
+    "opcode": "exit"
+  },
+  {
+    "pc": 12,
+    "line": 13,
+    "vizop": "return",
+    "opcode": "return"
+  },
+  {
+    "pc": 13,
+    "line": 14,
+    "vizop": "getstatic",
+    "opcode": "getstatic 0"
+  },
+  {
+    "pc": 16,
+    "line": 14,
+    "vizop": "getstatic",
+    "opcode": "getstatic 1"
+  },
+  {
+    "pc": 19,
+    "line": 14,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 20,
+    "line": 14,
+    "vizop": "astore",
+    "opcode": "astore"
+  },
+  {
+    "pc": 21,
+    "line": 15,
+    "vizop": "getstatic",
+    "opcode": "getstatic 1"
+  },
+  {
+    "pc": 24,
+    "line": 15,
+    "vizop": "const",
+    "opcode": "const_1"
+  },
+  {
+    "pc": 25,
+    "line": 15,
+    "vizop": "add",
+    "opcode": "add"
+  },
+  {
+    "pc": 26,
+    "line": 15,
+    "vizop": "putstatic",
+    "opcode": "putstatic 1"
+  },
+  {
+    "pc": 29,
+    "line": 18,
+    "vizop": "exit",
+    "opcode": "exit"
+  },
+  {
+    "pc": 30,
+    "line": 18,
+    "vizop": "return",
+    "opcode": "return"
+  },
+  {
+    "pc": 31,
+    "line": 18,
+    "vizop": "enter",
+    "opcode": "enter 1 1"
+  },
+  {
+    "pc": 34,
+    "line": 19,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 35,
+    "line": 19,
+    "vizop": "const",
+    "opcode": "const_0"
+  },
+  {
+    "pc": 36,
+    "line": 19,
+    "vizop": "optional_jump",
+    "opcode": "jlt 10"
+  },
+  {
+    "pc": 39,
+    "line": 19,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 40,
+    "line": 19,
+    "vizop": "getstatic",
+    "opcode": "getstatic 1"
+  },
+  {
+    "pc": 43,
+    "line": 19,
+    "vizop": "optional_jump",
+    "opcode": "jlt 5"
+  },
+  {
+    "pc": 46,
+    "line": 19,
+    "vizop": "exit",
+    "opcode": "exit"
+  },
+  {
+    "pc": 47,
+    "line": 19,
+    "vizop": "return",
+    "opcode": "return"
+  },
+  {
+    "pc": 48,
+    "line": 21,
+    "vizop": "getstatic",
+    "opcode": "getstatic 0"
+  },
+  {
+    "pc": 51,
+    "line": 21,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 52,
+    "line": 21,
+    "vizop": "aload",
+    "opcode": "aload"
+  },
+  {
+    "pc": 53,
+    "line": 21,
+    "vizop": "getfield",
+    "opcode": "getfield 0"
+  },
+  {
+    "pc": 56,
+    "line": 21,
+    "vizop": "const",
+    "opcode": "const_0"
+  },
+  {
+    "pc": 57,
+    "line": 21,
+    "vizop": "print",
+    "opcode": "print"
+  },
+  {
+    "pc": 58,
+    "line": 22,
+    "vizop": "getstatic",
+    "opcode": "getstatic 0"
+  },
+  {
+    "pc": 61,
+    "line": 22,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 62,
+    "line": 22,
+    "vizop": "aload",
+    "opcode": "aload"
+  },
+  {
+    "pc": 63,
+    "line": 22,
+    "vizop": "getfield",
+    "opcode": "getfield 1"
+  },
+  {
+    "pc": 66,
+    "line": 22,
+    "vizop": "const",
+    "opcode": "const_0"
+  },
+  {
+    "pc": 67,
+    "line": 22,
+    "vizop": "print",
+    "opcode": "print"
+  },
+  {
+    "pc": 68,
+    "line": 25,
+    "vizop": "exit",
+    "opcode": "exit"
+  },
+  {
+    "pc": 69,
+    "line": 25,
+    "vizop": "return",
+    "opcode": "return"
+  },
+  {
+    "pc": 70,
+    "line": 27,
+    "vizop": "enter",
+    "opcode": "enter 0 1"
+  },
+  {
+    "pc": 73,
+    "line": 28,
+    "vizop": "const",
+    "opcode": "const_0"
+  },
+  {
+    "pc": 74,
+    "line": 28,
+    "vizop": "store",
+    "opcode": "store_0"
+  },
+  {
+    "pc": 75,
+    "line": 31,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 76,
+    "line": 31,
+    "vizop": "getstatic",
+    "opcode": "getstatic 1"
+  },
+  {
+    "pc": 79,
+    "line": 31,
+    "vizop": "optional_jump",
+    "opcode": "jge 13"
+  },
+  {
+    "pc": 82,
+    "line": 32,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 83,
+    "line": 32,
+    "vizop": "call",
+    "opcode": "call -52"
+  },
+  {
+    "pc": 86,
+    "line": 33,
+    "vizop": "inc",
+    "opcode": "inc 0 1"
+  },
+  {
+    "pc": 89,
+    "line": 35,
+    "vizop": "jmp",
+    "opcode": "jmp -14"
+  },
+  {
+    "pc": 92,
+    "line": 37,
+    "vizop": "exit",
+    "opcode": "exit"
+  },
+  {
+    "pc": 93,
+    "line": 37,
+    "vizop": "return",
+    "opcode": "return"
+  },
+  {
+    "pc": 94,
+    "line": 39,
+    "vizop": "enter",
+    "opcode": "enter 0 1"
+  },
+  {
+    "pc": 97,
+    "line": 41,
+    "vizop": "const",
+    "opcode": "const_3"
+  },
+  {
+    "pc": 98,
+    "line": 41,
+    "vizop": "newarray",
+    "opcode": "newarray 1"
+  },
+  {
+    "pc": 100,
+    "line": 41,
+    "vizop": "putstatic",
+    "opcode": "putstatic 0"
+  },
+  {
+    "pc": 103,
+    "line": 44,
+    "vizop": "new",
+    "opcode": "new 2"
+  },
+  {
+    "pc": 106,
+    "line": 44,
+    "vizop": "store",
+    "opcode": "reference_op"
+  },
+  {
+    "pc": 107,
+    "line": 45,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 108,
+    "line": 45,
+    "vizop": "const",
+    "opcode": "const_1"
+  },
+  {
+    "pc": 109,
+    "line": 45,
+    "vizop": "putfield",
+    "opcode": "putfield 0"
+  },
+  {
+    "pc": 112,
+    "line": 46,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 113,
+    "line": 46,
+    "vizop": "const",
+    "opcode": "const 30"
+  },
+  {
+    "pc": 118,
+    "line": 46,
+    "vizop": "putfield",
+    "opcode": "putfield 1"
+  },
+  {
+    "pc": 121,
+    "line": 49,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 122,
+    "line": 49,
+    "vizop": "call",
+    "opcode": "call -121"
+  },
+  {
+    "pc": 125,
+    "line": 51,
+    "vizop": "call",
+    "opcode": "call -55"
+  },
+  {
+    "pc": 128,
+    "line": 53,
+    "vizop": "exit",
+    "opcode": "exit"
+  },
+  {
+    "pc": 129,
+    "line": 53,
+    "vizop": "return",
+    "opcode": "return"
+  }
+]
+------
+value = initialPointers
+{
+  "pc": 93,
+  "esp": 0,
+  "fp": 0,
+  "free": 1,
+  "sp": 0
+}
+------
+value = symbolTypes
+{
+  "symbolTypes": [
+    {
+      "id": 1537358694,
+      "kind": "atomic",
+      "name": "None",
+      "line": 27,
+      "uses": [
+        27
+      ],
+      "variables": []
+    },
+    {
+      "id": 1513712028,
+      "kind": "struct",
+      "name": "Class",
+      "line": 27,
+      "uses": [
+        27
+      ],
+      "variables": []
+    },
+    {
+      "id": 644166178,
+      "kind": "array",
+      "name": "None[]",
+      "itemTypeId": 1537358694,
+      "line": 27,
+      "uses": [
+        27
+      ],
+      "variables": []
+    },
+    {
+      "id": 1757676444,
+      "kind": "array",
+      "name": "Person[]",
+      "itemTypeId": 892529689,
+      "line": 9,
+      "uses": [
+        9,
+        14,
+        14,
+        21,
+        21,
+        22,
+        22,
+        41,
+        41
+      ],
+      "variables": []
+    },
+    {
+      "id": 1975358023,
+      "kind": "atomic",
+      "name": "int",
+      "line": 27,
+      "uses": [
+        27,
+        2,
+        2,
+        5,
+        5,
+        5,
+        6,
+        6,
+        6,
+        10,
+        10,
+        18,
+        18,
+        18,
+        26,
+        26,
+        26
+      ],
+      "variables": []
+    },
+    {
+      "id": 892529689,
+      "kind": "struct",
+      "name": "Person",
+      "line": 4,
+      "uses": [
+        4,
+        9,
+        12,
+        12,
+        38,
+        38,
+        41,
+        41,
+        44,
+        44
+      ],
+      "variables": [
+        {
+          "address": 0,
+          "symbolTypeId": 1975358023,
+          "name": "id"
+        },
+        {
+          "address": 1,
+          "symbolTypeId": 1975358023,
+          "name": "age"
+        }
+      ]
+    },
+    {
+      "id": 747464370,
+      "kind": "atomic",
+      "name": "char",
+      "line": 27,
+      "uses": [
+        27
+      ],
+      "variables": []
+    }
+  ],
+  "variables": [
+    {
+      "id": 0,
+      "name": "noObj",
+      "symbolTypeId": 1537358694,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 1,
+      "name": "null",
+      "symbolTypeId": 1513712028,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 2,
+      "name": "i",
+      "symbolTypeId": 1975358023,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 3,
+      "name": "ch",
+      "symbolTypeId": 747464370,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 4,
+      "name": "arr",
+      "symbolTypeId": 644166178,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 5,
+      "name": "LEN",
+      "symbolTypeId": 1975358023,
+      "address": 0,
+      "initialValue": 3
+    },
+    {
+      "id": 6,
+      "name": "id",
+      "symbolTypeId": 1975358023,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 7,
+      "name": "age",
+      "symbolTypeId": 1975358023,
+      "address": 1,
+      "initialValue": 0
+    },
+    {
+      "id": 8,
+      "name": "personList",
+      "symbolTypeId": 1757676444,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 9,
+      "name": "personCount",
+      "symbolTypeId": 1975358023,
+      "address": 1,
+      "initialValue": 0
+    },
+    {
+      "id": 10,
+      "name": "pers",
+      "symbolTypeId": 892529689,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 11,
+      "name": "i",
+      "symbolTypeId": 1975358023,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 12,
+      "name": "i",
+      "symbolTypeId": 1975358023,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 13,
+      "name": "p",
+      "symbolTypeId": 892529689,
+      "address": 0,
+      "initialValue": 0
+    }
+  ],
+  "programName": "DifferentBytecodes",
+  "methods": [
+    {
+      "id": 0,
+      "name": "chr",
+      "line": 27,
+      "locals": [
+        {
+          "id": 2,
+          "name": "i",
+          "symbolTypeId": 1975358023,
+          "address": 0,
+          "initialValue": 0
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "ord",
+      "line": 27,
+      "locals": [
+        {
+          "id": 3,
+          "name": "ch",
+          "symbolTypeId": 747464370,
+          "address": 0,
+          "initialValue": 0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "len",
+      "line": 27,
+      "locals": [
+        {
+          "id": 4,
+          "name": "arr",
+          "symbolTypeId": 644166178,
+          "address": 0,
+          "initialValue": 0
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "add",
+      "line": 12,
+      "locals": [
+        {
+          "id": 10,
+          "name": "pers",
+          "symbolTypeId": 892529689,
+          "address": 0,
+          "initialValue": 0
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "printPerson",
+      "line": 18,
+      "locals": [
+        {
+          "id": 11,
+          "name": "i",
+          "symbolTypeId": 1975358023,
+          "address": 0,
+          "initialValue": 0
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "printPeople",
+      "line": 25,
+      "locals": [
+        {
+          "id": 12,
+          "name": "i",
+          "symbolTypeId": 1975358023,
+          "address": 0,
+          "initialValue": 0
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "main",
+      "line": 37,
+      "locals": [
+        {
+          "id": 13,
+          "name": "p",
+          "symbolTypeId": 892529689,
+          "address": 0,
+          "initialValue": 0
+        }
+      ]
+    }
+  ],
+  "globals": [
+    {
+      "id": 8,
+      "name": "personList",
+      "symbolTypeId": 1757676444,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 9,
+      "name": "personCount",
+      "symbolTypeId": 1975358023,
+      "address": 1,
+      "initialValue": 0
+    }
+  ],
+  "constants": [
+    {
+      "id": 5,
+      "name": "LEN",
+      "symbolTypeId": 1975358023,
+      "address": 0,
+      "initialValue": 3
+    }
+  ]
+}
+------
+start
+name = "DifferentBytecodes"
+------
+operation
+operation.code = 51
+operation.name = "enter"
+operation.pc = 94
+operation.line = 39
+vizop = "enter"
+psize = 0
+lsize = 1
+operation.args = "0,1"
+------
+operation
+operation.code = 18
+operation.name = "const_3"
+operation.pc = 97
+operation.line = 41
+vizop = "const"
+value = 3
+------
+operation
+operation.code = 33
+operation.name = "newarray"
+operation.pc = 98
+operation.line = 41
+vizop = "newarray"
+allocSize = 16
+isByte = false
+length = 3
+nextFree = 5
+operation.args = "1"
+------
+operation
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 100
+operation.line = 41
+vizop = "putstatic"
+address = 0
+operation.args = "0"
+------
+operation
+operation.code = 32
+operation.name = "new"
+operation.pc = 103
+operation.line = 44
+vizop = "new"
+allocSize = 2
+fields = 2
+nextFree = 7
+operation.args = "2"
+------
+operation
+operation.code = 7
+operation.name = "store_0"
+operation.pc = 106
+operation.line = 44
+vizop = "store"
+address = 0
+------
+operation
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 107
+operation.line = 45
+vizop = "load"
+address = 0
+------
+operation
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 108
+operation.line = 45
+vizop = "const"
+value = 1
+------
+operation
+operation.code = 14
+operation.name = "putfield"
+operation.pc = 109
+operation.line = 45
+vizop = "putfield"
+address = 0
+operation.args = "0"
+------
+operation
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 112
+operation.line = 46
+vizop = "load"
+address = 0
+------
+operation
+operation.code = 22
+operation.name = "const"
+operation.pc = 113
+operation.line = 46
+vizop = "const"
+value = 30
+operation.args = "30"
+------
+operation
+operation.code = 14
+operation.name = "putfield"
+operation.pc = 118
+operation.line = 46
+vizop = "putfield"
+address = 1
+operation.args = "1"
+------
+operation
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 121
+operation.line = 49
+vizop = "load"
+address = 0
+------
+operation
+operation.code = 49
+operation.name = "call"
+operation.pc = 122
+operation.line = 49
+vizop = "call"
+offset = -121
+newPC = 0
+operation.args = "-121"
+------
+operation
+operation.code = 51
+operation.name = "enter"
+operation.pc = 1
+operation.line = 12
+vizop = "enter"
+psize = 1
+lsize = 1
+operation.args = "1,1"
+------
+operation
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 4
+operation.line = 13
+vizop = "getstatic"
+address = 1
+operation.args = "1"
+------
+operation
+operation.code = 18
+operation.name = "const_3"
+operation.pc = 7
+operation.line = 13
+vizop = "const"
+value = 3
+------
+operation
+operation.code = 45
+operation.name = "jlt"
+operation.pc = 8
+operation.line = 13
+vizop = "optional_jump"
+offset = 5
+newPC = 12
+condition = true
+operation.args = "5"
+------
+operation
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 13
+operation.line = 14
+vizop = "getstatic"
+address = 0
+operation.args = "0"
+------
+operation
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 16
+operation.line = 14
+vizop = "getstatic"
+address = 1
+operation.args = "1"
+------
+operation
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 19
+operation.line = 14
+vizop = "load"
+address = 0
+------
+operation
+operation.code = 35
+operation.name = "astore"
+operation.pc = 20
+operation.line = 14
+vizop = "astore"
+------
+operation
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 21
+operation.line = 15
+vizop = "getstatic"
+address = 1
+operation.args = "1"
+------
+operation
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 24
+operation.line = 15
+vizop = "const"
+value = 1
+------
+operation
+operation.code = 23
+operation.name = "add"
+operation.pc = 25
+operation.line = 15
+vizop = "add"
+------
+operation
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 26
+operation.line = 15
+vizop = "putstatic"
+address = 1
+operation.args = "1"
+------
+operation
+operation.code = 52
+operation.name = "exit"
+operation.pc = 29
+operation.line = 18
+vizop = "exit"
+------
+operation
+operation.code = 50
+operation.name = "return"
+operation.pc = 30
+operation.line = 18
+vizop = "return"
+newPC = 124
+------
+operation
+operation.code = 49
+operation.name = "call"
+operation.pc = 125
+operation.line = 51
+vizop = "call"
+offset = -55
+newPC = 69
+operation.args = "-55"
+------
+operation
+operation.code = 51
+operation.name = "enter"
+operation.pc = 70
+operation.line = 27
+vizop = "enter"
+psize = 0
+lsize = 1
+operation.args = "0,1"
+------
+operation
+operation.code = 15
+operation.name = "const_0"
+operation.pc = 73
+operation.line = 28
+vizop = "const"
+value = 0
+------
+operation
+operation.code = 7
+operation.name = "store_0"
+operation.pc = 74
+operation.line = 28
+vizop = "store"
+address = 0
+------
+operation
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 75
+operation.line = 31
+vizop = "load"
+address = 0
+------
+operation
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 76
+operation.line = 31
+vizop = "getstatic"
+address = 1
+operation.args = "1"
+------
+operation
+operation.code = 48
+operation.name = "jge"
+operation.pc = 79
+operation.line = 31
+vizop = "optional_jump"
+offset = 13
+newPC = 81
+condition = false
+operation.args = "13"
+------
+operation
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 82
+operation.line = 32
+vizop = "load"
+address = 0
+------
+operation
+operation.code = 49
+operation.name = "call"
+operation.pc = 83
+operation.line = 32
+vizop = "call"
+offset = -52
+newPC = 30
+operation.args = "-52"
+------
+operation
+operation.code = 51
+operation.name = "enter"
+operation.pc = 31
+operation.line = 18
+vizop = "enter"
+psize = 1
+lsize = 1
+operation.args = "1,1"
+------
+operation
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 34
+operation.line = 19
+vizop = "load"
+address = 0
+------
+operation
+operation.code = 15
+operation.name = "const_0"
+operation.pc = 35
+operation.line = 19
+vizop = "const"
+value = 0
+------
+operation
+operation.code = 45
+operation.name = "jlt"
+operation.pc = 36
+operation.line = 19
+vizop = "optional_jump"
+offset = 10
+newPC = 38
+condition = false
+operation.args = "10"
+------
+operation
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 39
+operation.line = 19
+vizop = "load"
+address = 0
+------
+operation
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 40
+operation.line = 19
+vizop = "getstatic"
+address = 1
+operation.args = "1"
+------
+operation
+operation.code = 45
+operation.name = "jlt"
+operation.pc = 43
+operation.line = 19
+vizop = "optional_jump"
+offset = 5
+newPC = 47
+condition = true
+operation.args = "5"
+------
+operation
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 48
+operation.line = 21
+vizop = "getstatic"
+address = 0
+operation.args = "0"
+------
+operation
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 51
+operation.line = 21
+vizop = "load"
+address = 0
+------
+operation
+operation.code = 34
+operation.name = "aload"
+operation.pc = 52
+operation.line = 21
+vizop = "aload"
+------
+operation
+operation.code = 13
+operation.name = "getfield"
+operation.pc = 53
+operation.line = 21
+vizop = "getfield"
+address = 0
+operation.args = "0"
+------
+operation
+operation.code = 15
+operation.name = "const_0"
+operation.pc = 56
+operation.line = 21
+vizop = "const"
+value = 0
+------
+operation
+operation.code = 54
+operation.name = "print"
+operation.pc = 57
+operation.line = 21
+vizop = "print"
+value = 1
+length = -1
+------
+operation
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 58
+operation.line = 22
+vizop = "getstatic"
+address = 0
+operation.args = "0"
+------
+operation
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 61
+operation.line = 22
+vizop = "load"
+address = 0
+------
+operation
+operation.code = 34
+operation.name = "aload"
+operation.pc = 62
+operation.line = 22
+vizop = "aload"
+------
+operation
+operation.code = 13
+operation.name = "getfield"
+operation.pc = 63
+operation.line = 22
+vizop = "getfield"
+address = 1
+operation.args = "1"
+------
+operation
+operation.code = 15
+operation.name = "const_0"
+operation.pc = 66
+operation.line = 22
+vizop = "const"
+value = 0
+------
+operation
+operation.code = 54
+operation.name = "print"
+operation.pc = 67
+operation.line = 22
+vizop = "print"
+value = 30
+length = -2
+------
+operation
+operation.code = 52
+operation.name = "exit"
+operation.pc = 68
+operation.line = 25
+vizop = "exit"
+------
+operation
+operation.code = 50
+operation.name = "return"
+operation.pc = 69
+operation.line = 25
+vizop = "return"
+newPC = 85
+------
+operation
+operation.code = 31
+operation.name = "inc"
+operation.pc = 86
+operation.line = 33
+vizop = "inc"
+b1 = 0
+b2 = 1
+operation.args = "0,1"
+------
+operation
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 89
+operation.line = 35
+vizop = "jmp"
+offset = -14
+newPC = 74
+operation.args = "-14"
+------
+operation
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 75
+operation.line = 31
+vizop = "load"
+address = 0
+------
+operation
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 76
+operation.line = 31
+vizop = "getstatic"
+address = 1
+operation.args = "1"
+------
+operation
+operation.code = 48
+operation.name = "jge"
+operation.pc = 79
+operation.line = 31
+vizop = "optional_jump"
+offset = 13
+newPC = 91
+condition = true
+operation.args = "13"
+------
+operation
+operation.code = 52
+operation.name = "exit"
+operation.pc = 92
+operation.line = 37
+vizop = "exit"
+------
+operation
+operation.code = 50
+operation.name = "return"
+operation.pc = 93
+operation.line = 37
+vizop = "return"
+newPC = 127
+------
+operation
+operation.code = 52
+operation.name = "exit"
+operation.pc = 128
+operation.line = 53
+vizop = "exit"
+------
+operation
+operation.code = 50
+operation.name = "return"
+operation.pc = 129
+operation.line = 53
+vizop = "return"
+newPC = 129
+exit = true
+

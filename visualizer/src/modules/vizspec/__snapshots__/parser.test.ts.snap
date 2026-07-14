@@ -1,0 +1,806 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`parser > should parse vizspec 1`] = `
+{
+  "declarations": {
+    "region": {
+      "data": {
+        "name": "Static Data / Global",
+        "pointers": [
+          {
+            "name": "data",
+            "type": "root_pointer",
+          },
+        ],
+        "type": "addressable",
+        "visualization": {
+          "color": "#ffaa00",
+          "direction": "forward",
+          "orientation": "vertical",
+        },
+      },
+      "estack": {
+        "isExpressionStack": true,
+        "name": "Expression Stack",
+        "pointers": [
+          {
+            "name": "estack",
+            "type": "root_pointer",
+          },
+          {
+            "name": "esp",
+            "type": "stack_pointer",
+          },
+        ],
+        "type": "stack",
+        "visualization": {
+          "color": "#ff6644",
+          "direction": "forward",
+          "orientation": "vertical",
+        },
+      },
+      "heap": {
+        "name": "Heap",
+        "pointers": [
+          {
+            "name": "heap",
+            "type": "root_pointer",
+          },
+          {
+            "name": "free",
+          },
+        ],
+        "type": "addressable",
+        "visualization": {
+          "color": "#11aa88",
+          "direction": "forward",
+          "orientation": "vertical",
+        },
+      },
+      "local": {
+        "name": "Method Stack",
+        "pointers": [
+          {
+            "name": "pstack",
+            "type": "root_pointer",
+          },
+          {
+            "name": "fp",
+          },
+          {
+            "name": "sp",
+            "type": "stack_pointer",
+          },
+        ],
+        "type": "stack",
+        "visualization": {
+          "color": "#ff6644",
+          "direction": "forward",
+          "orientation": "vertical",
+        },
+      },
+    },
+    "type": {
+      "array": {
+        "hasFields": true,
+        "name": "Array",
+        "visualization": {
+          "color": "#ffddee",
+        },
+      },
+      "constant": {
+        "name": "Constant",
+        "visualization": {
+          "color": "#88eeee",
+        },
+      },
+      "object": {
+        "hasFields": true,
+        "name": "Object",
+        "visualization": {
+          "color": "#ffbbaa",
+        },
+      },
+      "result": {
+        "name": "Calculation Operation Result",
+        "visualization": {
+          "color": "#ffeeaa",
+        },
+      },
+      "return_pc": {
+        "name": "Return PC",
+        "visualization": {
+          "color": "#88aaee",
+        },
+      },
+      "stored_fp": {
+        "name": "Stored FP",
+        "visualization": {
+          "color": "#88aaee",
+        },
+      },
+    },
+  },
+  "functions": [
+    {
+      "args": [
+        "a",
+        "b",
+      ],
+      "identifier": "test",
+      "javascript": "return a * b + 2;",
+    },
+  ],
+  "init": {
+    "javascript": "log("Starting program");",
+  },
+  "operations": [
+    {
+      "aliases": [],
+      "args": [
+        {
+          "name": "address",
+          "type": "number",
+        },
+      ],
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "load",
+      "javascript": "let fp = getPointer('fp');
+let entry = getRegion('local').get(fp + address);
+
+getRegion('estack').push(createReferenceEntry({
+  entry,
+  region: 'local'
+}));",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": [
+        {
+          "name": "address",
+          "type": "number",
+        },
+      ],
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "store",
+      "javascript": "let entry = getRegion('estack').pop();
+let fp = getPointer('fp');
+
+getRegion('local').set(fp + address, createReferenceEntry({
+  entry,
+  region: 'local'
+}));",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": [
+        {
+          "name": "address",
+          "type": "number",
+        },
+      ],
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "getstatic",
+      "javascript": "let entry = getRegion('data').get(address);
+
+getRegion('estack').push(createReferenceEntry({
+  entry,
+  region: 'data'
+}));",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": [
+        {
+          "name": "address",
+          "type": "number",
+        },
+      ],
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "putstatic",
+      "javascript": "let entry = getRegion('estack').pop();
+
+getRegion('data').set(address, createReferenceEntry({
+  entry,
+  region: 'data'
+}));",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": [
+        {
+          "name": "address",
+          "type": "number",
+        },
+      ],
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "getfield",
+      "javascript": "let addr = getRegion('estack').pop().value();
+let entry = getRegion('heap').get(addr + address);
+
+getRegion('estack').push(createReferenceEntry({
+  entry,
+  region: 'heap'
+}));",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": [
+        {
+          "name": "address",
+          "type": "number",
+        },
+      ],
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "putfield",
+      "javascript": "let val = getRegion('estack').pop();
+let addr = getRegion('estack').pop().value();
+
+getRegion('heap').set(addr + address, createReferenceEntry({
+  val,
+  region: 'heap'
+}));",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": [
+        {
+          "name": "value",
+          "type": "number",
+        },
+      ],
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "const",
+      "javascript": "let entry = createEntry('constant', { value, size: 4 });
+
+getRegion('estack').push(entry);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "add",
+      "javascript": "let val2 = getRegion('estack').pop().value();
+let val1 = getRegion('estack').pop().value();
+let entry = createEntry('result', { value: val1 + val2, size: 4 });
+
+getRegion('estack').push(entry);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "sub",
+      "javascript": "let val2 = getRegion('estack').pop().value();
+let val1 = getRegion('estack').pop().value();
+let entry = createEntry('result', { value: val1 - val2, size: 4 });
+
+getRegion('estack').push(entry);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "mul",
+      "javascript": "let val2 = getRegion('estack').pop().value();
+let val1 = getRegion('estack').pop().value();
+let entry = createEntry('result', { value: val1 * val2, size: 4 });
+
+getRegion('estack').push(entry);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "div",
+      "javascript": "let val2 = getRegion('estack').pop().value();
+let val1 = getRegion('estack').pop().value();
+let entry = createEntry('result', { value: val1 / val2, size: 4 });
+
+getRegion('estack').push(entry);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "rem",
+      "javascript": "let val2 = getRegion('estack').pop().value();
+let val1 = getRegion('estack').pop().value();
+let entry = createEntry('result', { value: val1 % val2, size: 4 });
+
+getRegion('estack').push(entry);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "neg",
+      "javascript": "let val = getRegion('estack').pop().value();
+let entry = createEntry('result', { value: -val, size: 4 });
+
+getRegion('estack').push(entry);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "shl",
+      "javascript": "let val2 = getRegion('estack').pop().value();
+let val1 = getRegion('estack').pop().value();
+let entry = createEntry('result', { value: val1 << val2, size: 4 });
+
+getRegion('estack').push(entry);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "shr",
+      "javascript": "let val2 = getRegion('estack').pop().value();
+let val1 = getRegion('estack').pop().value();
+let entry = createEntry('result', { value: val1 >> val2, size: 4 });
+
+getRegion('estack').push(entry);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": [
+        {
+          "name": "b1",
+          "type": "number",
+        },
+        {
+          "name": "b2",
+          "type": "number",
+        },
+      ],
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "inc",
+      "javascript": "let fp = getPointer('fp');
+let off = fp + b1;
+
+let entry = getRegion('local').get(off);
+let val = entry.value();
+
+entry.setValue(val + b2);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": [
+        {
+          "name": "allocSize",
+          "type": "number",
+        },
+        {
+          "name": "nextFree",
+          "type": "number",
+        },
+      ],
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "new",
+      "javascript": "// Get and update free pointer
+let addr = getPoiner('free');
+setPointer('free', nextFree);
+
+// Create entry
+let objectEntry = createEntry('object', { addr, size: allocSize });
+getRegion('heap').set(addr, objectEntry);
+
+// Push address to estack
+let addrEntry = createEntry('constant', { value: addr, size: 4 });
+getRegion('estack').push(addrEntry);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": [
+        {
+          "name": "isByte",
+          "type": "boolean",
+        },
+        {
+          "name": "allocSize",
+          "type": "number",
+        },
+        {
+          "name": "nextFree",
+          "type": "number",
+        },
+        {
+          "name": "length",
+          "type": "number",
+        },
+      ],
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "newarray",
+      "javascript": "// Get and update free pointer
+let addr = getPoiner('free');
+setPointer('free', nextFree);
+
+// Create entry
+let arrayEntry = createEntry('array', { addr, size: allocSize });
+getRegion('heap').set(addr, arrayEntry);
+
+// Add length to array
+let lengthEntry = createEntry('constant', { value: length, size: 4 });
+arrayEntry.setField(0, lengthEntry);
+
+// Push address to estack
+let addrEntry = createEntry('constant', { value: addr + 1, size: 4 });
+getRegion('estack').push(addrEntry);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "aload",
+      "javascript": "let index = getRegion('estack').pop().value();
+let addr = getRegion('estack').pop().value();
+
+let arrayEntry = getRegion('heap').get(addr);
+let valueEntry = arrayEntry.getField(index);
+
+valueEntry.setSize(4);
+
+getRegion('estack').push(valueEntry);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "astore",
+      "javascript": "let valueEntry = getRegion('estack').pop();
+let index = getRegion('estack').pop().value();
+let addr = getRegion('estack').pop().value();
+
+valueEntry.setSize(4);
+
+let arrayEntry = getRegion('heap').get(addr);
+arrayEntry.setField(index, valueEntry);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "baload",
+      "javascript": "let index = getRegion('estack').pop().value();
+let addr = getRegion('estack').pop().value();
+
+let arrayEntry = getRegion('heap').get(addr);
+let valueEntry = arrayEntry.getField(index);
+
+valueEntry.setSize(1);
+
+getRegion('estack').push(valueEntry);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "bastore",
+      "javascript": "let valueEntry = getRegion('estack').pop();
+let index = getRegion('estack').pop().value();
+let addr = getRegion('estack').pop().value();
+
+valueEntry.setSize(1);
+
+let arrayEntry = getRegion('heap').get(addr);
+arrayEntry.setField(index, valueEntry);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "arraylength",
+      "javascript": "let addr = getRegion('estack').pop().value();
+
+let arrayEntry = getRegion('heap').get(addr);
+let lengthEntry = arrayEntry.getField(0);
+
+lengthEntry.setSize(4);
+
+getRegion('estack').push(lengthEntry);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "pop",
+      "javascript": "getRegion('estack').pop();",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "dup",
+      "javascript": "let entry = getRegion('estack').pop();
+getRegion('estack').push(entry);
+getRegion('estack').push(entry);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "dup2",
+      "javascript": "let entry1 = getRegion('estack').pop();
+let entry2 = getRegion('estack').pop();
+
+getRegion('estack').push(entry2);
+getRegion('estack').push(entry1);
+getRegion('estack').push(entry2);
+getRegion('estack').push(entry1);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": [
+        {
+          "name": "newPC",
+          "type": "number",
+        },
+      ],
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "jmp",
+      "javascript": "setPointer('pc', newPC);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": [
+        {
+          "name": "newPC",
+          "type": "number",
+        },
+        {
+          "name": "condition",
+          "type": "boolean",
+        },
+      ],
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "optional_jump",
+      "javascript": "let entry2 = getRegion('estack').pop();
+let entry1 = getRegion('estack').pop();
+
+let operand = '==';
+if (operation.identifier == 'jne') operand = '!=';
+if (operation.identifier == 'jlt') operand = '<';
+if (operation.identifier == 'jle') operand = '<=';
+if (operation.identifier == 'jgt') operand = '>';
+if (operation.identifier == 'jge') operand = '>=';
+
+if (condition) {
+  setPointer('pc', newPC);
+}",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": [
+        {
+          "name": "newPC",
+          "type": "number",
+        },
+      ],
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "call",
+      "javascript": "let currentPC = getPointer('pc');
+let returnPCEntry = createEntry('return_pc', { value: currentPC, size: 4 });
+
+getRegion('local').push(returnPCEntry);
+
+setPointer('pc', newPC);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "return",
+      "javascript": "let returnPCEntry = getRegion('local').pop();
+let returnPC = returnPCEntry.value();
+
+setPointer('pc', returnPC);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": [
+        {
+          "name": "psize",
+          "type": "number",
+        },
+        {
+          "name": "lsize",
+          "type": "number",
+        },
+      ],
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "enter",
+      "javascript": "let sp = getPointer('sp');
+
+getRegion('local').push(getPointer('fp'));
+setPointer('fp', sp);
+
+let fp = getPointer('fp');
+
+for (let i = 0; i < psize; i++) {
+  getRegion('local').push(createEntry('stored_fp', { value: 0, size: 4 }));
+}
+
+let estack = getRegion('estack');
+for (let i = psize - 1; i >= 0; i--) {
+  getRegion('local').set(fp + i, estack.pop());
+}",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "exit",
+      "javascript": "let fp = getPointer('fp');
+let sp = getPointer('sp');
+
+setPointer('sp', fp);
+
+let oldFP = getRegion('local').pop();
+setPointer('fp', oldFP.value());",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": [
+        {
+          "altIdentifiers": [
+            "bread",
+          ],
+          "name": "value",
+          "type": "number",
+        },
+      ],
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "read",
+      "javascript": "let entry = createEntry('constant', { value, size: 4 });
+
+getRegion('estack').push(entry);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": [
+        {
+          "altIdentifiers": [
+            "bprint",
+          ],
+          "name": "value",
+          "type": "string",
+        },
+      ],
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "print",
+      "javascript": "getRegion('estack').pop();
+getRegion('estack').pop();
+
+log(\`Print: \${value}\`);",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": undefined,
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "nop",
+      "javascript": "// Do nothing",
+      "name": undefined,
+    },
+    {
+      "aliases": [],
+      "args": [
+        {
+          "name": "val",
+          "type": "number",
+        },
+      ],
+      "flags": {
+        "highlightNextForCall": false,
+      },
+      "identifier": "trap",
+      "javascript": "fatal(message);",
+      "name": undefined,
+    },
+  ],
+}
+`;

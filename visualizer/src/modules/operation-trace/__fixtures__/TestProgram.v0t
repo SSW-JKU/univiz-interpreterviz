@@ -1,0 +1,6045 @@
+------
+source
+program Test
+
+	class Inner {
+		int i;
+		char[] a;
+		char ch;
+	}
+
+	int ii, jj;
+	int[] arr;
+	char a, b;
+	char[] arr2;
+
+	final int const1 = 3;
+	final char const2 = 'w';
+{
+	int Func (int i) { return i*2; }
+
+	void Math ()
+		int i, j, k, l, m;
+		Inner in;
+		Inner[] arr;
+	{
+		arr = new Inner[12]; 
+		arr[7] = new Inner;
+		arr[7].i = 17;
+
+		in = new Inner;
+		in.i = 5;
+		i = 2; j=3; k=4;
+		l = i*j*k*4*Func(2)*Func(k);
+		m = l+i-k+(const1%ord(const2))*in.i;
+		i = m+arr[7].i;
+		i += ii;
+		if (i == 3119) print(1);
+	}
+
+	void Structs ()
+		int i;
+	{
+		while (i<17) {
+			if (i>10) ii++;
+			else if (i<5) ii--;
+			else ii+=8;
+			i++;
+		}
+		ii++;
+		if (ii == 67) print(2);
+		i = 3;
+		while (i<15) {
+			ii*=2;
+			if (i == 10) break;
+			i++;
+		}
+		if(ii == 17152) print(3);
+	}
+
+	int Call(int val)
+		int i;
+	{
+		if (val<10) val = Call(val+1)-1;
+		else val = -2;
+		return val;
+	}
+
+	void main () {
+		ii = 17;
+		Math();
+		Structs();
+		ii = 1;
+		ii = Call(ii);
+		if (ii == -11) print(4);
+		print('\n');
+	}
+}
+------
+value = initialPointers
+{
+  "pc": 316,
+  "esp": 0,
+  "fp": 0,
+  "free": 1,
+  "sp": 0
+}
+------
+value = scope
+{
+  "symbolTypes": [
+    {
+      "id": 0,
+      "kind": "atomic",
+      "name": "Int",
+      "line": -1,
+      "arrayDepth": 0,
+      "variables": []
+    },
+    {
+      "id": 1,
+      "kind": "atomic",
+      "name": "Char",
+      "line": -1,
+      "arrayDepth": 0,
+      "variables": []
+    },
+    {
+      "id": 3,
+      "kind": "array",
+      "name": "Char[]",
+      "line": -1,
+      "arrayDepth": 1,
+      "itemTypeId": 1,
+      "variables": []
+    },
+    {
+      "id": 2,
+      "kind": "struct",
+      "name": "Inner",
+      "line": 4,
+      "arrayDepth": 0,
+      "variables": [
+        {
+          "name": "i",
+          "symbolTypeId": 0,
+          "address": 0,
+          "initialValue": 0,
+          "isParameter": false
+        },
+        {
+          "name": "a",
+          "symbolTypeId": 3,
+          "address": 1,
+          "initialValue": 0,
+          "isParameter": false
+        },
+        {
+          "name": "ch",
+          "symbolTypeId": 1,
+          "address": 2,
+          "initialValue": 0,
+          "isParameter": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "kind": "array",
+      "name": "Int[]",
+      "line": -1,
+      "arrayDepth": 1,
+      "itemTypeId": 0,
+      "variables": []
+    },
+    {
+      "id": 5,
+      "kind": "array",
+      "name": "Inner[]",
+      "line": -1,
+      "arrayDepth": 1,
+      "itemTypeId": 2,
+      "variables": []
+    }
+  ],
+  "programName": "Test",
+  "methods": [
+    {
+      "name": "Func",
+      "line": 17,
+      "locals": [
+        {
+          "name": "i",
+          "symbolTypeId": 0,
+          "address": 0,
+          "initialValue": 0,
+          "isParameter": true
+        }
+      ]
+    },
+    {
+      "name": "Math",
+      "line": 19,
+      "locals": [
+        {
+          "name": "i",
+          "symbolTypeId": 0,
+          "address": 0,
+          "initialValue": 0,
+          "isParameter": false
+        },
+        {
+          "name": "j",
+          "symbolTypeId": 0,
+          "address": 1,
+          "initialValue": 0,
+          "isParameter": false
+        },
+        {
+          "name": "k",
+          "symbolTypeId": 0,
+          "address": 2,
+          "initialValue": 0,
+          "isParameter": false
+        },
+        {
+          "name": "l",
+          "symbolTypeId": 0,
+          "address": 3,
+          "initialValue": 0,
+          "isParameter": false
+        },
+        {
+          "name": "m",
+          "symbolTypeId": 0,
+          "address": 4,
+          "initialValue": 0,
+          "isParameter": false
+        },
+        {
+          "name": "in",
+          "symbolTypeId": 2,
+          "address": 5,
+          "initialValue": 0,
+          "isParameter": false
+        },
+        {
+          "name": "arr",
+          "symbolTypeId": 5,
+          "address": 6,
+          "initialValue": 0,
+          "isParameter": false
+        }
+      ]
+    },
+    {
+      "name": "Structs",
+      "line": 38,
+      "locals": [
+        {
+          "name": "i",
+          "symbolTypeId": 0,
+          "address": 0,
+          "initialValue": 0,
+          "isParameter": false
+        }
+      ]
+    },
+    {
+      "name": "Call",
+      "line": 58,
+      "locals": [
+        {
+          "name": "val",
+          "symbolTypeId": 0,
+          "address": 0,
+          "initialValue": 0,
+          "isParameter": true
+        },
+        {
+          "name": "i",
+          "symbolTypeId": 0,
+          "address": 1,
+          "initialValue": 0,
+          "isParameter": false
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "line": 19,
+      "locals": []
+    }
+  ],
+  "globals": [
+    {
+      "name": "ii",
+      "symbolTypeId": 0,
+      "address": 0,
+      "initialValue": 0,
+      "isParameter": false
+    },
+    {
+      "name": "jj",
+      "symbolTypeId": 0,
+      "address": 1,
+      "initialValue": 0,
+      "isParameter": false
+    },
+    {
+      "name": "arr",
+      "symbolTypeId": 4,
+      "address": 2,
+      "initialValue": 0,
+      "isParameter": false
+    },
+    {
+      "name": "a",
+      "symbolTypeId": 1,
+      "address": 3,
+      "initialValue": 0,
+      "isParameter": false
+    },
+    {
+      "name": "b",
+      "symbolTypeId": 1,
+      "address": 4,
+      "initialValue": 0,
+      "isParameter": false
+    },
+    {
+      "name": "arr2",
+      "symbolTypeId": 3,
+      "address": 5,
+      "initialValue": 0,
+      "isParameter": false
+    }
+  ]
+}
+------
+start
+------
+operation
+operation.args = "51"
+operation.code = 51
+operation.name = "enter"
+operation.pc = 317
+operation.line = 66
+vizop = "enter"
+psize = 0
+lsize = 0
+------
+operation
+operation.args = "0,0,22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 320
+operation.line = 67
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 325
+operation.line = 67
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,49"
+operation.code = 49
+operation.name = "call"
+operation.pc = 328
+operation.line = 68
+vizop = "call"
+offset = -317
+newPC = 10
+------
+operation
+operation.args = "-317,51"
+operation.code = 51
+operation.name = "enter"
+operation.pc = 11
+operation.line = 23
+vizop = "enter"
+psize = 0
+lsize = 7
+------
+operation
+operation.args = "0,7,22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 14
+operation.line = 24
+vizop = "const"
+value = 12
+------
+operation
+operation.args = "12,33"
+operation.code = 33
+operation.name = "newarray"
+operation.pc = 19
+operation.line = 24
+vizop = "newarray"
+allocSize = 52
+isByte = false
+length = 12
+nextFree = 14
+------
+operation
+operation.args = "1,6"
+operation.code = 6
+operation.name = "store"
+operation.pc = 21
+operation.line = 24
+vizop = "store"
+address = 6
+------
+operation
+operation.args = "6,1"
+operation.code = 1
+operation.name = "load"
+operation.pc = 23
+operation.line = 25
+vizop = "load"
+address = 6
+fp = 3
+------
+operation
+operation.args = "6,22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 25
+operation.line = 25
+vizop = "const"
+value = 7
+------
+operation
+operation.args = "7,32"
+operation.code = 32
+operation.name = "new"
+operation.pc = 30
+operation.line = 25
+vizop = "new"
+allocSize = 12
+nextFree = 17
+------
+operation
+operation.args = "3,35"
+operation.code = 35
+operation.name = "astore"
+operation.pc = 33
+operation.line = 25
+vizop = "astore"
+------
+operation
+operation.args = "1"
+operation.code = 1
+operation.name = "load"
+operation.pc = 34
+operation.line = 26
+vizop = "load"
+address = 6
+fp = 3
+------
+operation
+operation.args = "6,22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 36
+operation.line = 26
+vizop = "const"
+value = 7
+------
+operation
+operation.args = "7,34"
+operation.code = 34
+operation.name = "aload"
+operation.pc = 41
+operation.line = 26
+vizop = "aload"
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 42
+operation.line = 26
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,14"
+operation.code = 14
+operation.name = "putfield"
+operation.pc = 47
+operation.line = 26
+vizop = "putfield"
+address = 0
+------
+operation
+operation.args = "0,32"
+operation.code = 32
+operation.name = "new"
+operation.pc = 50
+operation.line = 28
+vizop = "new"
+allocSize = 12
+nextFree = 20
+------
+operation
+operation.args = "3,6"
+operation.code = 6
+operation.name = "store"
+operation.pc = 53
+operation.line = 28
+vizop = "store"
+address = 5
+------
+operation
+operation.args = "5,1"
+operation.code = 1
+operation.name = "load"
+operation.pc = 55
+operation.line = 29
+vizop = "load"
+address = 5
+fp = 3
+------
+operation
+operation.args = "5,20"
+operation.code = 20
+operation.name = "const_5"
+operation.pc = 57
+operation.line = 29
+vizop = "const"
+value = 5
+------
+operation
+operation.args = "14"
+operation.code = 14
+operation.name = "putfield"
+operation.pc = 58
+operation.line = 29
+vizop = "putfield"
+address = 0
+------
+operation
+operation.args = "0,17"
+operation.code = 17
+operation.name = "const_2"
+operation.pc = 61
+operation.line = 30
+vizop = "const"
+value = 2
+------
+operation
+operation.args = "7"
+operation.code = 7
+operation.name = "store_0"
+operation.pc = 62
+operation.line = 30
+vizop = "store"
+address = 0
+------
+operation
+operation.args = "18"
+operation.code = 18
+operation.name = "const_3"
+operation.pc = 63
+operation.line = 30
+vizop = "const"
+value = 3
+------
+operation
+operation.args = "8"
+operation.code = 8
+operation.name = "store_1"
+operation.pc = 64
+operation.line = 30
+vizop = "store"
+address = 1
+------
+operation
+operation.args = "19"
+operation.code = 19
+operation.name = "const_4"
+operation.pc = 65
+operation.line = 30
+vizop = "const"
+value = 4
+------
+operation
+operation.args = "9"
+operation.code = 9
+operation.name = "store_2"
+operation.pc = 66
+operation.line = 30
+vizop = "store"
+address = 2
+------
+operation
+operation.args = "2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 67
+operation.line = 31
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "3"
+operation.code = 3
+operation.name = "load_1"
+operation.pc = 68
+operation.line = 31
+vizop = "load"
+address = 1
+------
+operation
+operation.args = "25"
+operation.code = 25
+operation.name = "mul"
+operation.pc = 69
+operation.line = 31
+vizop = "mul"
+------
+operation
+operation.args = "4"
+operation.code = 4
+operation.name = "load_2"
+operation.pc = 70
+operation.line = 31
+vizop = "load"
+address = 2
+------
+operation
+operation.args = "25"
+operation.code = 25
+operation.name = "mul"
+operation.pc = 71
+operation.line = 31
+vizop = "mul"
+------
+operation
+operation.args = "19"
+operation.code = 19
+operation.name = "const_4"
+operation.pc = 72
+operation.line = 31
+vizop = "const"
+value = 4
+------
+operation
+operation.args = "25"
+operation.code = 25
+operation.name = "mul"
+operation.pc = 73
+operation.line = 31
+vizop = "mul"
+------
+operation
+operation.args = "17"
+operation.code = 17
+operation.name = "const_2"
+operation.pc = 74
+operation.line = 31
+vizop = "const"
+value = 2
+------
+operation
+operation.args = "49"
+operation.code = 49
+operation.name = "call"
+operation.pc = 75
+operation.line = 31
+vizop = "call"
+offset = -74
+newPC = 0
+------
+operation
+operation.args = "-74,51"
+operation.code = 51
+operation.name = "enter"
+operation.pc = 1
+operation.line = 17
+vizop = "enter"
+psize = 1
+lsize = 1
+------
+operation
+operation.args = "1,1,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 4
+operation.line = 17
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "17"
+operation.code = 17
+operation.name = "const_2"
+operation.pc = 5
+operation.line = 17
+vizop = "const"
+value = 2
+------
+operation
+operation.args = "25"
+operation.code = 25
+operation.name = "mul"
+operation.pc = 6
+operation.line = 17
+vizop = "mul"
+------
+operation
+operation.args = "52"
+operation.code = 52
+operation.name = "exit"
+operation.pc = 7
+operation.line = 17
+vizop = "exit"
+------
+operation
+operation.args = "50"
+operation.code = 50
+operation.name = "return"
+operation.pc = 8
+operation.line = 17
+vizop = "return"
+newPC = 77
+------
+operation
+operation.args = "25"
+operation.code = 25
+operation.name = "mul"
+operation.pc = 78
+operation.line = 31
+vizop = "mul"
+------
+operation
+operation.args = "4"
+operation.code = 4
+operation.name = "load_2"
+operation.pc = 79
+operation.line = 31
+vizop = "load"
+address = 2
+------
+operation
+operation.args = "49"
+operation.code = 49
+operation.name = "call"
+operation.pc = 80
+operation.line = 31
+vizop = "call"
+offset = -79
+newPC = 0
+------
+operation
+operation.args = "-79,51"
+operation.code = 51
+operation.name = "enter"
+operation.pc = 1
+operation.line = 17
+vizop = "enter"
+psize = 1
+lsize = 1
+------
+operation
+operation.args = "1,1,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 4
+operation.line = 17
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "17"
+operation.code = 17
+operation.name = "const_2"
+operation.pc = 5
+operation.line = 17
+vizop = "const"
+value = 2
+------
+operation
+operation.args = "25"
+operation.code = 25
+operation.name = "mul"
+operation.pc = 6
+operation.line = 17
+vizop = "mul"
+------
+operation
+operation.args = "52"
+operation.code = 52
+operation.name = "exit"
+operation.pc = 7
+operation.line = 17
+vizop = "exit"
+------
+operation
+operation.args = "50"
+operation.code = 50
+operation.name = "return"
+operation.pc = 8
+operation.line = 17
+vizop = "return"
+newPC = 82
+------
+operation
+operation.args = "25"
+operation.code = 25
+operation.name = "mul"
+operation.pc = 83
+operation.line = 31
+vizop = "mul"
+------
+operation
+operation.args = "10"
+operation.code = 10
+operation.name = "store_3"
+operation.pc = 84
+operation.line = 31
+vizop = "store"
+address = 3
+------
+operation
+operation.args = "5"
+operation.code = 5
+operation.name = "load_3"
+operation.pc = 85
+operation.line = 32
+vizop = "load"
+address = 3
+------
+operation
+operation.args = "2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 86
+operation.line = 32
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 87
+operation.line = 32
+vizop = "add"
+------
+operation
+operation.args = "4"
+operation.code = 4
+operation.name = "load_2"
+operation.pc = 88
+operation.line = 32
+vizop = "load"
+address = 2
+------
+operation
+operation.args = "24"
+operation.code = 24
+operation.name = "sub"
+operation.pc = 89
+operation.line = 32
+vizop = "sub"
+------
+operation
+operation.args = "18"
+operation.code = 18
+operation.name = "const_3"
+operation.pc = 90
+operation.line = 32
+vizop = "const"
+value = 3
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 91
+operation.line = 32
+vizop = "const"
+value = 119
+------
+operation
+operation.args = "119,27"
+operation.code = 27
+operation.name = "rem"
+operation.pc = 96
+operation.line = 32
+vizop = "rem"
+------
+operation
+operation.args = "1"
+operation.code = 1
+operation.name = "load"
+operation.pc = 97
+operation.line = 32
+vizop = "load"
+address = 5
+fp = 3
+------
+operation
+operation.args = "5,13"
+operation.code = 13
+operation.name = "getfield"
+operation.pc = 99
+operation.line = 32
+vizop = "getfield"
+address = 0
+
+------
+operation
+operation.args = "0,25"
+operation.code = 25
+operation.name = "mul"
+operation.pc = 102
+operation.line = 32
+vizop = "mul"
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 103
+operation.line = 32
+vizop = "add"
+------
+operation
+operation.args = "6"
+operation.code = 6
+operation.name = "store"
+operation.pc = 104
+operation.line = 32
+vizop = "store"
+address = 4
+------
+operation
+operation.args = "4,1"
+operation.code = 1
+operation.name = "load"
+operation.pc = 106
+operation.line = 33
+vizop = "load"
+address = 4
+fp = 3
+------
+operation
+operation.args = "4,1"
+operation.code = 1
+operation.name = "load"
+operation.pc = 108
+operation.line = 33
+vizop = "load"
+address = 6
+fp = 3
+------
+operation
+operation.args = "6,22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 110
+operation.line = 33
+vizop = "const"
+value = 7
+------
+operation
+operation.args = "7,34"
+operation.code = 34
+operation.name = "aload"
+operation.pc = 115
+operation.line = 33
+vizop = "aload"
+------
+operation
+operation.args = "13"
+operation.code = 13
+operation.name = "getfield"
+operation.pc = 116
+operation.line = 33
+vizop = "getfield"
+address = 0
+------
+operation
+operation.args = "0,23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 119
+operation.line = 33
+vizop = "add"
+------
+operation
+operation.args = "7"
+operation.code = 7
+operation.name = "store_0"
+operation.pc = 120
+operation.line = 33
+vizop = "store"
+address = 0
+------
+operation
+operation.args = "2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 121
+operation.line = 34
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 122
+operation.line = 34
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 125
+operation.line = 34
+vizop = "add"
+------
+operation
+operation.args = "7"
+operation.code = 7
+operation.name = "store_0"
+operation.pc = 126
+operation.line = 34
+vizop = "store"
+address = 0
+------
+operation
+operation.args = "2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 127
+operation.line = 35
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 128
+operation.line = 35
+vizop = "const"
+value = 3119
+------
+operation
+operation.args = "3119,44"
+operation.code = 44
+operation.name = "jne"
+operation.pc = 133
+operation.line = 35
+vizop = "optional_jump"
+offset = 6
+newPC = 135
+condition = false
+------
+operation
+operation.args = "6,16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 136
+operation.line = 35
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "15"
+operation.code = 15
+operation.name = "const_0"
+operation.pc = 137
+operation.line = 35
+vizop = "const"
+value = 0
+------
+operation
+operation.args = "54"
+operation.code = 54
+operation.name = "print"
+operation.pc = 138
+operation.line = 35
+vizop = "print"
+value = 1
+length = -1
+------
+operation
+operation.args = "52"
+operation.code = 52
+operation.name = "exit"
+operation.pc = 139
+operation.line = 38
+vizop = "exit"
+------
+operation
+operation.args = "50"
+operation.code = 50
+operation.name = "return"
+operation.pc = 140
+operation.line = 38
+vizop = "return"
+newPC = 330
+------
+operation
+operation.args = "49"
+operation.code = 49
+operation.name = "call"
+operation.pc = 331
+operation.line = 69
+vizop = "call"
+offset = -190
+newPC = 140
+------
+operation
+operation.args = "-190,51"
+operation.code = 51
+operation.name = "enter"
+operation.pc = 141
+operation.line = 40
+vizop = "enter"
+psize = 0
+lsize = 1
+------
+operation
+operation.args = "0,1,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 144
+operation.line = 41
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 145
+operation.line = 41
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 150
+operation.line = 41
+vizop = "optional_jump"
+offset = 57
+newPC = 152
+condition = false
+------
+operation
+operation.args = "57,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 153
+operation.line = 42
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 154
+operation.line = 42
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,46"
+operation.code = 46
+operation.name = "jle"
+operation.pc = 159
+operation.line = 42
+vizop = "optional_jump"
+offset = 14
+newPC = 172
+condition = true
+------
+operation
+operation.args = "14,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 173
+operation.line = 43
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "20"
+operation.code = 20
+operation.name = "const_5"
+operation.pc = 174
+operation.line = 43
+vizop = "const"
+value = 5
+------
+operation
+operation.args = "48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 175
+operation.line = 43
+vizop = "optional_jump"
+offset = 14
+newPC = 177
+condition = false
+------
+operation
+operation.args = "14,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 178
+operation.line = 43
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,21"
+operation.code = 21
+operation.name = "const_m1"
+operation.pc = 181
+operation.line = 43
+vizop = "const"
+value = -1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 182
+operation.line = 43
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 183
+operation.line = 43
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 186
+operation.line = 44
+vizop = "jmp"
+offset = 15
+newPC = 200
+------
+operation
+operation.args = "15,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 201
+operation.line = 45
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 204
+operation.line = 47
+vizop = "jmp"
+offset = -60
+newPC = 143
+------
+operation
+operation.args = "-60,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 144
+operation.line = 41
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 145
+operation.line = 41
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 150
+operation.line = 41
+vizop = "optional_jump"
+offset = 57
+newPC = 152
+condition = false
+------
+operation
+operation.args = "57,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 153
+operation.line = 42
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 154
+operation.line = 42
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,46"
+operation.code = 46
+operation.name = "jle"
+operation.pc = 159
+operation.line = 42
+vizop = "optional_jump"
+offset = 14
+newPC = 172
+condition = true
+------
+operation
+operation.args = "14,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 173
+operation.line = 43
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "20"
+operation.code = 20
+operation.name = "const_5"
+operation.pc = 174
+operation.line = 43
+vizop = "const"
+value = 5
+------
+operation
+operation.args = "48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 175
+operation.line = 43
+vizop = "optional_jump"
+offset = 14
+newPC = 177
+condition = false
+------
+operation
+operation.args = "14,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 178
+operation.line = 43
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,21"
+operation.code = 21
+operation.name = "const_m1"
+operation.pc = 181
+operation.line = 43
+vizop = "const"
+value = -1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 182
+operation.line = 43
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 183
+operation.line = 43
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 186
+operation.line = 44
+vizop = "jmp"
+offset = 15
+newPC = 200
+------
+operation
+operation.args = "15,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 201
+operation.line = 45
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 204
+operation.line = 47
+vizop = "jmp"
+offset = -60
+newPC = 143
+------
+operation
+operation.args = "-60,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 144
+operation.line = 41
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 145
+operation.line = 41
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 150
+operation.line = 41
+vizop = "optional_jump"
+offset = 57
+newPC = 152
+condition = false
+------
+operation
+operation.args = "57,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 153
+operation.line = 42
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 154
+operation.line = 42
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,46"
+operation.code = 46
+operation.name = "jle"
+operation.pc = 159
+operation.line = 42
+vizop = "optional_jump"
+offset = 14
+newPC = 172
+condition = true
+------
+operation
+operation.args = "14,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 173
+operation.line = 43
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "20"
+operation.code = 20
+operation.name = "const_5"
+operation.pc = 174
+operation.line = 43
+vizop = "const"
+value = 5
+------
+operation
+operation.args = "48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 175
+operation.line = 43
+vizop = "optional_jump"
+offset = 14
+newPC = 177
+condition = false
+------
+operation
+operation.args = "14,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 178
+operation.line = 43
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,21"
+operation.code = 21
+operation.name = "const_m1"
+operation.pc = 181
+operation.line = 43
+vizop = "const"
+value = -1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 182
+operation.line = 43
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 183
+operation.line = 43
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 186
+operation.line = 44
+vizop = "jmp"
+offset = 15
+newPC = 200
+------
+operation
+operation.args = "15,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 201
+operation.line = 45
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 204
+operation.line = 47
+vizop = "jmp"
+offset = -60
+newPC = 143
+------
+operation
+operation.args = "-60,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 144
+operation.line = 41
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 145
+operation.line = 41
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 150
+operation.line = 41
+vizop = "optional_jump"
+offset = 57
+newPC = 152
+condition = false
+------
+operation
+operation.args = "57,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 153
+operation.line = 42
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 154
+operation.line = 42
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,46"
+operation.code = 46
+operation.name = "jle"
+operation.pc = 159
+operation.line = 42
+vizop = "optional_jump"
+offset = 14
+newPC = 172
+condition = true
+------
+operation
+operation.args = "14,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 173
+operation.line = 43
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "20"
+operation.code = 20
+operation.name = "const_5"
+operation.pc = 174
+operation.line = 43
+vizop = "const"
+value = 5
+------
+operation
+operation.args = "48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 175
+operation.line = 43
+vizop = "optional_jump"
+offset = 14
+newPC = 177
+condition = false
+------
+operation
+operation.args = "14,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 178
+operation.line = 43
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,21"
+operation.code = 21
+operation.name = "const_m1"
+operation.pc = 181
+operation.line = 43
+vizop = "const"
+value = -1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 182
+operation.line = 43
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 183
+operation.line = 43
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 186
+operation.line = 44
+vizop = "jmp"
+offset = 15
+newPC = 200
+------
+operation
+operation.args = "15,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 201
+operation.line = 45
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 204
+operation.line = 47
+vizop = "jmp"
+offset = -60
+newPC = 143
+------
+operation
+operation.args = "-60,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 144
+operation.line = 41
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 145
+operation.line = 41
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 150
+operation.line = 41
+vizop = "optional_jump"
+offset = 57
+newPC = 152
+condition = false
+------
+operation
+operation.args = "57,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 153
+operation.line = 42
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 154
+operation.line = 42
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,46"
+operation.code = 46
+operation.name = "jle"
+operation.pc = 159
+operation.line = 42
+vizop = "optional_jump"
+offset = 14
+newPC = 172
+condition = true
+------
+operation
+operation.args = "14,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 173
+operation.line = 43
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "20"
+operation.code = 20
+operation.name = "const_5"
+operation.pc = 174
+operation.line = 43
+vizop = "const"
+value = 5
+
+------
+operation
+operation.args = "48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 175
+operation.line = 43
+vizop = "optional_jump"
+offset = 14
+newPC = 177
+condition = false
+------
+operation
+operation.args = "14,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 178
+operation.line = 43
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,21"
+operation.code = 21
+operation.name = "const_m1"
+operation.pc = 181
+operation.line = 43
+vizop = "const"
+value = -1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 182
+operation.line = 43
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 183
+operation.line = 43
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 186
+operation.line = 44
+vizop = "jmp"
+offset = 15
+newPC = 200
+------
+operation
+operation.args = "15,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 201
+operation.line = 45
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 204
+operation.line = 47
+vizop = "jmp"
+offset = -60
+newPC = 143
+------
+operation
+operation.args = "-60,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 144
+operation.line = 41
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 145
+operation.line = 41
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 150
+operation.line = 41
+vizop = "optional_jump"
+offset = 57
+newPC = 152
+condition = false
+------
+operation
+operation.args = "57,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 153
+operation.line = 42
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 154
+operation.line = 42
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,46"
+operation.code = 46
+operation.name = "jle"
+operation.pc = 159
+operation.line = 42
+vizop = "optional_jump"
+offset = 14
+newPC = 172
+condition = true
+------
+operation
+operation.args = "14,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 173
+operation.line = 43
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "20"
+operation.code = 20
+operation.name = "const_5"
+operation.pc = 174
+operation.line = 43
+vizop = "const"
+value = 5
+------
+operation
+operation.args = "48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 175
+operation.line = 43
+vizop = "optional_jump"
+offset = 14
+newPC = 188
+condition = true
+------
+operation
+operation.args = "14,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 189
+operation.line = 44
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 192
+operation.line = 44
+vizop = "const"
+value = 8
+------
+operation
+operation.args = "8,23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 197
+operation.line = 44
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 198
+operation.line = 44
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 201
+operation.line = 45
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 204
+operation.line = 47
+vizop = "jmp"
+offset = -60
+newPC = 143
+------
+operation
+operation.args = "-60,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 144
+operation.line = 41
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 145
+operation.line = 41
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 150
+operation.line = 41
+vizop = "optional_jump"
+offset = 57
+newPC = 152
+condition = false
+------
+operation
+operation.args = "57,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 153
+operation.line = 42
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 154
+operation.line = 42
+vizop = "const"
+value = 10
+
+------
+operation
+operation.args = "10,46"
+operation.code = 46
+operation.name = "jle"
+operation.pc = 159
+operation.line = 42
+vizop = "optional_jump"
+offset = 14
+newPC = 172
+condition = true
+------
+operation
+operation.args = "14,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 173
+operation.line = 43
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "20"
+operation.code = 20
+operation.name = "const_5"
+operation.pc = 174
+operation.line = 43
+vizop = "const"
+value = 5
+------
+operation
+operation.args = "48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 175
+operation.line = 43
+vizop = "optional_jump"
+offset = 14
+newPC = 188
+condition = true
+------
+operation
+operation.args = "14,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 189
+operation.line = 44
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 192
+operation.line = 44
+vizop = "const"
+value = 8
+------
+operation
+operation.args = "8,23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 197
+operation.line = 44
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 198
+operation.line = 44
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 201
+operation.line = 45
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 204
+operation.line = 47
+vizop = "jmp"
+offset = -60
+newPC = 143
+------
+operation
+operation.args = "-60,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 144
+operation.line = 41
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 145
+operation.line = 41
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 150
+operation.line = 41
+vizop = "optional_jump"
+offset = 57
+newPC = 152
+condition = false
+------
+operation
+operation.args = "57,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 153
+operation.line = 42
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 154
+operation.line = 42
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,46"
+operation.code = 46
+operation.name = "jle"
+operation.pc = 159
+operation.line = 42
+vizop = "optional_jump"
+offset = 14
+newPC = 172
+condition = true
+------
+operation
+operation.args = "14,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 173
+operation.line = 43
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "20"
+operation.code = 20
+operation.name = "const_5"
+operation.pc = 174
+operation.line = 43
+vizop = "const"
+value = 5
+------
+operation
+operation.args = "48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 175
+operation.line = 43
+vizop = "optional_jump"
+offset = 14
+newPC = 188
+condition = true
+------
+operation
+operation.args = "14,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 189
+operation.line = 44
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 192
+operation.line = 44
+vizop = "const"
+value = 8
+------
+operation
+operation.args = "8,23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 197
+operation.line = 44
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 198
+operation.line = 44
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 201
+operation.line = 45
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 204
+operation.line = 47
+vizop = "jmp"
+offset = -60
+newPC = 143
+------
+operation
+operation.args = "-60,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 144
+operation.line = 41
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 145
+operation.line = 41
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 150
+operation.line = 41
+vizop = "optional_jump"
+offset = 57
+newPC = 152
+condition = false
+------
+operation
+operation.args = "57,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 153
+operation.line = 42
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 154
+operation.line = 42
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,46"
+operation.code = 46
+operation.name = "jle"
+operation.pc = 159
+operation.line = 42
+vizop = "optional_jump"
+offset = 14
+newPC = 172
+condition = true
+------
+operation
+operation.args = "14,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 173
+operation.line = 43
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "20"
+operation.code = 20
+operation.name = "const_5"
+operation.pc = 174
+operation.line = 43
+vizop = "const"
+value = 5
+------
+operation
+operation.args = "48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 175
+operation.line = 43
+vizop = "optional_jump"
+offset = 14
+newPC = 188
+condition = true
+------
+operation
+operation.args = "14,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 189
+operation.line = 44
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 192
+operation.line = 44
+vizop = "const"
+value = 8
+------
+operation
+operation.args = "8,23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 197
+operation.line = 44
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 198
+operation.line = 44
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 201
+operation.line = 45
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 204
+operation.line = 47
+vizop = "jmp"
+offset = -60
+newPC = 143
+------
+operation
+operation.args = "-60,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 144
+operation.line = 41
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 145
+operation.line = 41
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 150
+operation.line = 41
+vizop = "optional_jump"
+offset = 57
+newPC = 152
+condition = false
+------
+operation
+operation.args = "57,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 153
+operation.line = 42
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 154
+operation.line = 42
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,46"
+operation.code = 46
+operation.name = "jle"
+operation.pc = 159
+operation.line = 42
+vizop = "optional_jump"
+offset = 14
+newPC = 172
+condition = true
+------
+operation
+operation.args = "14,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 173
+operation.line = 43
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "20"
+operation.code = 20
+operation.name = "const_5"
+operation.pc = 174
+operation.line = 43
+vizop = "const"
+value = 5
+------
+operation
+operation.args = "48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 175
+operation.line = 43
+vizop = "optional_jump"
+offset = 14
+newPC = 188
+condition = true
+------
+operation
+operation.args = "14,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 189
+operation.line = 44
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 192
+operation.line = 44
+vizop = "const"
+value = 8
+------
+operation
+operation.args = "8,23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 197
+operation.line = 44
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 198
+operation.line = 44
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 201
+operation.line = 45
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 204
+operation.line = 47
+vizop = "jmp"
+offset = -60
+newPC = 143
+------
+operation
+operation.args = "-60,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 144
+operation.line = 41
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 145
+operation.line = 41
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 150
+operation.line = 41
+vizop = "optional_jump"
+offset = 57
+newPC = 152
+condition = false
+------
+operation
+operation.args = "57,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 153
+operation.line = 42
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 154
+operation.line = 42
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,46"
+operation.code = 46
+operation.name = "jle"
+operation.pc = 159
+operation.line = 42
+vizop = "optional_jump"
+offset = 14
+newPC = 172
+condition = true
+------
+operation
+operation.args = "14,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 173
+operation.line = 43
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "20"
+operation.code = 20
+operation.name = "const_5"
+operation.pc = 174
+operation.line = 43
+vizop = "const"
+value = 5
+------
+operation
+operation.args = "48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 175
+operation.line = 43
+vizop = "optional_jump"
+offset = 14
+newPC = 188
+condition = true
+------
+operation
+operation.args = "14,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 189
+operation.line = 44
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 192
+operation.line = 44
+vizop = "const"
+value = 8
+------
+operation
+operation.args = "8,23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 197
+operation.line = 44
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 198
+operation.line = 44
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 201
+operation.line = 45
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 204
+operation.line = 47
+vizop = "jmp"
+offset = -60
+newPC = 143
+------
+operation
+operation.args = "-60,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 144
+operation.line = 41
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 145
+operation.line = 41
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 150
+operation.line = 41
+vizop = "optional_jump"
+offset = 57
+newPC = 152
+condition = false
+------
+operation
+operation.args = "57,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 153
+operation.line = 42
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 154
+operation.line = 42
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,46"
+operation.code = 46
+operation.name = "jle"
+operation.pc = 159
+operation.line = 42
+vizop = "optional_jump"
+offset = 14
+newPC = 161
+condition = false
+------
+operation
+operation.args = "14,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 162
+operation.line = 42
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 165
+operation.line = 42
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 166
+operation.line = 42
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 167
+operation.line = 42
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 170
+operation.line = 43
+vizop = "jmp"
+offset = 31
+newPC = 200
+------
+operation
+operation.args = "31,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 201
+operation.line = 45
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 204
+operation.line = 47
+vizop = "jmp"
+offset = -60
+newPC = 143
+------
+operation
+operation.args = "-60,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 144
+operation.line = 41
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 145
+operation.line = 41
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 150
+operation.line = 41
+vizop = "optional_jump"
+offset = 57
+newPC = 152
+condition = false
+------
+operation
+operation.args = "57,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 153
+operation.line = 42
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 154
+operation.line = 42
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,46"
+operation.code = 46
+operation.name = "jle"
+operation.pc = 159
+operation.line = 42
+vizop = "optional_jump"
+offset = 14
+newPC = 161
+condition = false
+------
+operation
+operation.args = "14,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 162
+operation.line = 42
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 165
+operation.line = 42
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 166
+operation.line = 42
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 167
+operation.line = 42
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 170
+operation.line = 43
+vizop = "jmp"
+offset = 31
+newPC = 200
+
+------
+operation
+operation.args = "31,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 201
+operation.line = 45
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 204
+operation.line = 47
+vizop = "jmp"
+offset = -60
+newPC = 143
+------
+operation
+operation.args = "-60,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 144
+operation.line = 41
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 145
+operation.line = 41
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 150
+operation.line = 41
+vizop = "optional_jump"
+offset = 57
+newPC = 152
+condition = false
+------
+operation
+operation.args = "57,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 153
+operation.line = 42
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 154
+operation.line = 42
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,46"
+operation.code = 46
+operation.name = "jle"
+operation.pc = 159
+operation.line = 42
+vizop = "optional_jump"
+offset = 14
+newPC = 161
+condition = false
+------
+operation
+operation.args = "14,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 162
+operation.line = 42
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 165
+operation.line = 42
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 166
+operation.line = 42
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 167
+operation.line = 42
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 170
+operation.line = 43
+vizop = "jmp"
+offset = 31
+newPC = 200
+------
+operation
+operation.args = "31,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 201
+operation.line = 45
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 204
+operation.line = 47
+vizop = "jmp"
+offset = -60
+newPC = 143
+------
+operation
+operation.args = "-60,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 144
+operation.line = 41
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 145
+operation.line = 41
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 150
+operation.line = 41
+vizop = "optional_jump"
+offset = 57
+newPC = 152
+condition = false
+------
+operation
+operation.args = "57,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 153
+operation.line = 42
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 154
+operation.line = 42
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,46"
+operation.code = 46
+operation.name = "jle"
+operation.pc = 159
+operation.line = 42
+vizop = "optional_jump"
+offset = 14
+newPC = 161
+condition = false
+------
+operation
+operation.args = "14,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 162
+operation.line = 42
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 165
+operation.line = 42
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 166
+operation.line = 42
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 167
+operation.line = 42
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 170
+operation.line = 43
+vizop = "jmp"
+offset = 31
+newPC = 200
+------
+operation
+operation.args = "31,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 201
+operation.line = 45
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 204
+operation.line = 47
+vizop = "jmp"
+offset = -60
+newPC = 143
+------
+operation
+operation.args = "-60,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 144
+operation.line = 41
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 145
+operation.line = 41
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 150
+operation.line = 41
+vizop = "optional_jump"
+offset = 57
+newPC = 152
+condition = false
+------
+operation
+operation.args = "57,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 153
+operation.line = 42
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 154
+operation.line = 42
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,46"
+operation.code = 46
+operation.name = "jle"
+operation.pc = 159
+operation.line = 42
+vizop = "optional_jump"
+offset = 14
+newPC = 161
+condition = false
+------
+operation
+operation.args = "14,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 162
+operation.line = 42
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 165
+operation.line = 42
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 166
+operation.line = 42
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 167
+operation.line = 42
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 170
+operation.line = 43
+vizop = "jmp"
+offset = 31
+newPC = 200
+------
+operation
+operation.args = "31,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 201
+operation.line = 45
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 204
+operation.line = 47
+vizop = "jmp"
+offset = -60
+newPC = 143
+------
+operation
+operation.args = "-60,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 144
+operation.line = 41
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 145
+operation.line = 41
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 150
+operation.line = 41
+vizop = "optional_jump"
+offset = 57
+newPC = 152
+condition = false
+------
+operation
+operation.args = "57,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 153
+operation.line = 42
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 154
+operation.line = 42
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,46"
+operation.code = 46
+operation.name = "jle"
+operation.pc = 159
+operation.line = 42
+vizop = "optional_jump"
+offset = 14
+newPC = 161
+condition = false
+------
+operation
+operation.args = "14,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 162
+operation.line = 42
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 165
+operation.line = 42
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 166
+operation.line = 42
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 167
+operation.line = 42
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 170
+operation.line = 43
+vizop = "jmp"
+offset = 31
+newPC = 200
+------
+operation
+operation.args = "31,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 201
+operation.line = 45
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 204
+operation.line = 47
+vizop = "jmp"
+offset = -60
+newPC = 143
+------
+operation
+operation.args = "-60,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 144
+operation.line = 41
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 145
+operation.line = 41
+vizop = "const"
+value = 17
+------
+operation
+operation.args = "17,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 150
+operation.line = 41
+vizop = "optional_jump"
+offset = 57
+newPC = 206
+condition = true
+------
+operation
+operation.args = "57,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 207
+operation.line = 47
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 210
+operation.line = 47
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 211
+operation.line = 47
+vizop = "add"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 212
+operation.line = 47
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 215
+operation.line = 48
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 218
+operation.line = 48
+vizop = "const"
+value = 67
+------
+operation
+operation.args = "67,44"
+operation.code = 44
+operation.name = "jne"
+operation.pc = 223
+operation.line = 48
+vizop = "optional_jump"
+offset = 6
+newPC = 225
+condition = false
+------
+operation
+operation.args = "6,17"
+operation.code = 17
+operation.name = "const_2"
+operation.pc = 226
+operation.line = 48
+vizop = "const"
+value = 2
+------
+operation
+operation.args = "15"
+operation.code = 15
+operation.name = "const_0"
+operation.pc = 227
+operation.line = 48
+vizop = "const"
+value = 0
+------
+operation
+operation.args = "54"
+operation.code = 54
+operation.name = "print"
+operation.pc = 228
+operation.line = 48
+vizop = "print"
+value = 2
+length = -1
+------
+operation
+operation.args = "18"
+operation.code = 18
+operation.name = "const_3"
+operation.pc = 229
+operation.line = 49
+vizop = "const"
+value = 3
+------
+operation
+operation.args = "7"
+operation.code = 7
+operation.name = "store_0"
+operation.pc = 230
+operation.line = 49
+vizop = "store"
+address = 0
+------
+operation
+operation.args = "2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 231
+operation.line = 50
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 232
+operation.line = 50
+vizop = "const"
+value = 15
+------
+operation
+operation.args = "15,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 237
+operation.line = 50
+vizop = "optional_jump"
+offset = 29
+newPC = 239
+condition = false
+------
+operation
+operation.args = "29,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 240
+operation.line = 51
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,17"
+operation.code = 17
+operation.name = "const_2"
+operation.pc = 243
+operation.line = 51
+vizop = "const"
+value = 2
+------
+operation
+operation.args = "25"
+operation.code = 25
+operation.name = "mul"
+operation.pc = 244
+operation.line = 51
+vizop = "mul"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 245
+operation.line = 51
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 248
+operation.line = 52
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 249
+operation.line = 52
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,44"
+operation.code = 44
+operation.name = "jne"
+operation.pc = 254
+operation.line = 52
+vizop = "optional_jump"
+offset = 6
+newPC = 259
+condition = true
+------
+operation
+operation.args = "6,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 260
+operation.line = 53
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 263
+operation.line = 55
+vizop = "jmp"
+offset = -32
+newPC = 230
+------
+operation
+operation.args = "-32,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 231
+operation.line = 50
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 232
+operation.line = 50
+vizop = "const"
+value = 15
+------
+operation
+operation.args = "15,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 237
+operation.line = 50
+vizop = "optional_jump"
+offset = 29
+newPC = 239
+condition = false
+------
+operation
+operation.args = "29,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 240
+operation.line = 51
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,17"
+operation.code = 17
+operation.name = "const_2"
+operation.pc = 243
+operation.line = 51
+vizop = "const"
+value = 2
+------
+operation
+operation.args = "25"
+operation.code = 25
+operation.name = "mul"
+operation.pc = 244
+operation.line = 51
+vizop = "mul"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 245
+operation.line = 51
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 248
+operation.line = 52
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 249
+operation.line = 52
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,44"
+operation.code = 44
+operation.name = "jne"
+operation.pc = 254
+operation.line = 52
+vizop = "optional_jump"
+offset = 6
+newPC = 259
+condition = true
+------
+operation
+operation.args = "6,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 260
+operation.line = 53
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 263
+operation.line = 55
+vizop = "jmp"
+offset = -32
+newPC = 230
+------
+operation
+operation.args = "-32,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 231
+operation.line = 50
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 232
+operation.line = 50
+vizop = "const"
+value = 15
+------
+operation
+operation.args = "15,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 237
+operation.line = 50
+vizop = "optional_jump"
+offset = 29
+newPC = 239
+condition = false
+
+------
+operation
+operation.args = "29,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 240
+operation.line = 51
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,17"
+operation.code = 17
+operation.name = "const_2"
+operation.pc = 243
+operation.line = 51
+vizop = "const"
+value = 2
+------
+operation
+operation.args = "25"
+operation.code = 25
+operation.name = "mul"
+operation.pc = 244
+operation.line = 51
+vizop = "mul"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 245
+operation.line = 51
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 248
+operation.line = 52
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 249
+operation.line = 52
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,44"
+operation.code = 44
+operation.name = "jne"
+operation.pc = 254
+operation.line = 52
+vizop = "optional_jump"
+offset = 6
+newPC = 259
+condition = true
+------
+operation
+operation.args = "6,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 260
+operation.line = 53
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 263
+operation.line = 55
+vizop = "jmp"
+offset = -32
+newPC = 230
+------
+operation
+operation.args = "-32,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 231
+operation.line = 50
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 232
+operation.line = 50
+vizop = "const"
+value = 15
+------
+operation
+operation.args = "15,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 237
+operation.line = 50
+vizop = "optional_jump"
+offset = 29
+newPC = 239
+condition = false
+------
+operation
+operation.args = "29,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 240
+operation.line = 51
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,17"
+operation.code = 17
+operation.name = "const_2"
+operation.pc = 243
+operation.line = 51
+vizop = "const"
+value = 2
+------
+operation
+operation.args = "25"
+operation.code = 25
+operation.name = "mul"
+operation.pc = 244
+operation.line = 51
+vizop = "mul"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 245
+operation.line = 51
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 248
+operation.line = 52
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 249
+operation.line = 52
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,44"
+operation.code = 44
+operation.name = "jne"
+operation.pc = 254
+operation.line = 52
+vizop = "optional_jump"
+offset = 6
+newPC = 259
+condition = true
+------
+operation
+operation.args = "6,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 260
+operation.line = 53
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 263
+operation.line = 55
+vizop = "jmp"
+offset = -32
+newPC = 230
+------
+operation
+operation.args = "-32,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 231
+operation.line = 50
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 232
+operation.line = 50
+vizop = "const"
+value = 15
+------
+operation
+operation.args = "15,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 237
+operation.line = 50
+vizop = "optional_jump"
+offset = 29
+newPC = 239
+condition = false
+------
+operation
+operation.args = "29,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 240
+operation.line = 51
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,17"
+operation.code = 17
+operation.name = "const_2"
+operation.pc = 243
+operation.line = 51
+vizop = "const"
+value = 2
+------
+operation
+operation.args = "25"
+operation.code = 25
+operation.name = "mul"
+operation.pc = 244
+operation.line = 51
+vizop = "mul"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 245
+operation.line = 51
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 248
+operation.line = 52
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 249
+operation.line = 52
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,44"
+operation.code = 44
+operation.name = "jne"
+operation.pc = 254
+operation.line = 52
+vizop = "optional_jump"
+offset = 6
+newPC = 259
+condition = true
+------
+operation
+operation.args = "6,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 260
+operation.line = 53
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 263
+operation.line = 55
+vizop = "jmp"
+offset = -32
+newPC = 230
+------
+operation
+operation.args = "-32,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 231
+operation.line = 50
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 232
+operation.line = 50
+vizop = "const"
+value = 15
+------
+operation
+operation.args = "15,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 237
+operation.line = 50
+vizop = "optional_jump"
+offset = 29
+newPC = 239
+condition = false
+------
+operation
+operation.args = "29,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 240
+operation.line = 51
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,17"
+operation.code = 17
+operation.name = "const_2"
+operation.pc = 243
+operation.line = 51
+vizop = "const"
+value = 2
+------
+operation
+operation.args = "25"
+operation.code = 25
+operation.name = "mul"
+operation.pc = 244
+operation.line = 51
+vizop = "mul"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 245
+operation.line = 51
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 248
+operation.line = 52
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 249
+operation.line = 52
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,44"
+operation.code = 44
+operation.name = "jne"
+operation.pc = 254
+operation.line = 52
+vizop = "optional_jump"
+offset = 6
+newPC = 259
+condition = true
+------
+operation
+operation.args = "6,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 260
+operation.line = 53
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 263
+operation.line = 55
+vizop = "jmp"
+offset = -32
+newPC = 230
+------
+operation
+operation.args = "-32,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 231
+operation.line = 50
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 232
+operation.line = 50
+vizop = "const"
+value = 15
+------
+operation
+operation.args = "15,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 237
+operation.line = 50
+vizop = "optional_jump"
+offset = 29
+newPC = 239
+condition = false
+------
+operation
+operation.args = "29,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 240
+operation.line = 51
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,17"
+operation.code = 17
+operation.name = "const_2"
+operation.pc = 243
+operation.line = 51
+vizop = "const"
+value = 2
+
+------
+operation
+operation.args = "25"
+operation.code = 25
+operation.name = "mul"
+operation.pc = 244
+operation.line = 51
+vizop = "mul"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 245
+operation.line = 51
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 248
+operation.line = 52
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 249
+operation.line = 52
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,44"
+operation.code = 44
+operation.name = "jne"
+operation.pc = 254
+operation.line = 52
+vizop = "optional_jump"
+offset = 6
+newPC = 259
+condition = true
+------
+operation
+operation.args = "6,31"
+operation.code = 31
+operation.name = "inc"
+operation.pc = 260
+operation.line = 53
+vizop = "inc"
+b1 = 0
+b2 = 1
+------
+operation
+operation.args = "0,1,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 263
+operation.line = 55
+vizop = "jmp"
+offset = -32
+newPC = 230
+------
+operation
+operation.args = "-32,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 231
+operation.line = 50
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 232
+operation.line = 50
+vizop = "const"
+value = 15
+------
+operation
+operation.args = "15,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 237
+operation.line = 50
+vizop = "optional_jump"
+offset = 29
+newPC = 239
+condition = false
+------
+operation
+operation.args = "29,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 240
+operation.line = 51
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,17"
+operation.code = 17
+operation.name = "const_2"
+operation.pc = 243
+operation.line = 51
+vizop = "const"
+value = 2
+------
+operation
+operation.args = "25"
+operation.code = 25
+operation.name = "mul"
+operation.pc = 244
+operation.line = 51
+vizop = "mul"
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 245
+operation.line = 51
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 248
+operation.line = 52
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 249
+operation.line = 52
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,44"
+operation.code = 44
+operation.name = "jne"
+operation.pc = 254
+operation.line = 52
+vizop = "optional_jump"
+offset = 6
+newPC = 256
+condition = false
+------
+operation
+operation.args = "6,42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 257
+operation.line = 52
+vizop = "jmp"
+offset = 9
+newPC = 265
+------
+operation
+operation.args = "9,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 266
+operation.line = 55
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 269
+operation.line = 55
+vizop = "const"
+value = 17152
+------
+operation
+operation.args = "17152,44"
+operation.code = 44
+operation.name = "jne"
+operation.pc = 274
+operation.line = 55
+vizop = "optional_jump"
+offset = 6
+newPC = 276
+condition = false
+------
+operation
+operation.args = "6,18"
+operation.code = 18
+operation.name = "const_3"
+operation.pc = 277
+operation.line = 55
+vizop = "const"
+value = 3
+------
+operation
+operation.args = "15"
+operation.code = 15
+operation.name = "const_0"
+operation.pc = 278
+operation.line = 55
+vizop = "const"
+value = 0
+------
+operation
+operation.args = "54"
+operation.code = 54
+operation.name = "print"
+operation.pc = 279
+operation.line = 55
+vizop = "print"
+value = 3
+length = -1
+------
+operation
+operation.args = "52"
+operation.code = 52
+operation.name = "exit"
+operation.pc = 280
+operation.line = 58
+vizop = "exit"
+------
+operation
+operation.args = "50"
+operation.code = 50
+operation.name = "return"
+operation.pc = 281
+operation.line = 58
+vizop = "return"
+newPC = 333
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 334
+operation.line = 70
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 335
+operation.line = 70
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 338
+operation.line = 71
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,49"
+operation.code = 49
+operation.name = "call"
+operation.pc = 341
+operation.line = 71
+vizop = "call"
+offset = -59
+newPC = 281
+------
+operation
+operation.args = "-59,51"
+operation.code = 51
+operation.name = "enter"
+operation.pc = 282
+operation.line = 60
+vizop = "enter"
+psize = 1
+lsize = 2
+------
+operation
+operation.args = "1,2,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 285
+operation.line = 61
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 286
+operation.line = 61
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 291
+operation.line = 61
+vizop = "optional_jump"
+offset = 15
+newPC = 293
+condition = false
+------
+operation
+operation.args = "15,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 294
+operation.line = 61
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 295
+operation.line = 61
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 296
+operation.line = 61
+vizop = "add"
+------
+operation
+operation.args = "49"
+operation.code = 49
+operation.name = "call"
+operation.pc = 297
+operation.line = 61
+vizop = "call"
+offset = -15
+newPC = 281
+------
+operation
+operation.args = "-15,51"
+operation.code = 51
+operation.name = "enter"
+operation.pc = 282
+operation.line = 60
+vizop = "enter"
+psize = 1
+lsize = 2
+------
+operation
+operation.args = "1,2,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 285
+operation.line = 61
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 286
+operation.line = 61
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 291
+operation.line = 61
+vizop = "optional_jump"
+offset = 15
+newPC = 293
+condition = false
+------
+operation
+operation.args = "15,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 294
+operation.line = 61
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 295
+operation.line = 61
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 296
+operation.line = 61
+vizop = "add"
+------
+operation
+operation.args = "49"
+operation.code = 49
+operation.name = "call"
+operation.pc = 297
+operation.line = 61
+vizop = "call"
+offset = -15
+newPC = 281
+------
+operation
+operation.args = "-15,51"
+operation.code = 51
+operation.name = "enter"
+operation.pc = 282
+operation.line = 60
+vizop = "enter"
+psize = 1
+lsize = 2
+------
+operation
+operation.args = "1,2,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 285
+operation.line = 61
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 286
+operation.line = 61
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 291
+operation.line = 61
+vizop = "optional_jump"
+offset = 15
+newPC = 293
+condition = false
+------
+operation
+operation.args = "15,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 294
+operation.line = 61
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 295
+operation.line = 61
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 296
+operation.line = 61
+vizop = "add"
+------
+operation
+operation.args = "49"
+operation.code = 49
+operation.name = "call"
+operation.pc = 297
+operation.line = 61
+vizop = "call"
+offset = -15
+newPC = 281
+------
+operation
+operation.args = "-15,51"
+operation.code = 51
+operation.name = "enter"
+operation.pc = 282
+operation.line = 60
+vizop = "enter"
+psize = 1
+lsize = 2
+------
+operation
+operation.args = "1,2,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 285
+operation.line = 61
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 286
+operation.line = 61
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 291
+operation.line = 61
+vizop = "optional_jump"
+offset = 15
+newPC = 293
+condition = false
+------
+operation
+operation.args = "15,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 294
+operation.line = 61
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 295
+operation.line = 61
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 296
+operation.line = 61
+vizop = "add"
+------
+operation
+operation.args = "49"
+operation.code = 49
+operation.name = "call"
+operation.pc = 297
+operation.line = 61
+vizop = "call"
+offset = -15
+newPC = 281
+------
+operation
+operation.args = "-15,51"
+operation.code = 51
+operation.name = "enter"
+operation.pc = 282
+operation.line = 60
+vizop = "enter"
+psize = 1
+lsize = 2
+------
+operation
+operation.args = "1,2,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 285
+operation.line = 61
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 286
+operation.line = 61
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 291
+operation.line = 61
+vizop = "optional_jump"
+offset = 15
+newPC = 293
+condition = false
+------
+operation
+operation.args = "15,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 294
+operation.line = 61
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 295
+operation.line = 61
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 296
+operation.line = 61
+vizop = "add"
+------
+operation
+operation.args = "49"
+operation.code = 49
+operation.name = "call"
+operation.pc = 297
+operation.line = 61
+vizop = "call"
+offset = -15
+newPC = 281
+------
+operation
+operation.args = "-15,51"
+operation.code = 51
+operation.name = "enter"
+operation.pc = 282
+operation.line = 60
+vizop = "enter"
+psize = 1
+lsize = 2
+------
+operation
+operation.args = "1,2,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 285
+operation.line = 61
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 286
+operation.line = 61
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 291
+operation.line = 61
+vizop = "optional_jump"
+offset = 15
+newPC = 293
+condition = false
+------
+operation
+operation.args = "15,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 294
+operation.line = 61
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 295
+operation.line = 61
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 296
+operation.line = 61
+vizop = "add"
+------
+operation
+operation.args = "49"
+operation.code = 49
+operation.name = "call"
+operation.pc = 297
+operation.line = 61
+vizop = "call"
+offset = -15
+newPC = 281
+------
+operation
+operation.args = "-15,51"
+operation.code = 51
+operation.name = "enter"
+operation.pc = 282
+operation.line = 60
+vizop = "enter"
+psize = 1
+lsize = 2
+------
+operation
+operation.args = "1,2,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 285
+operation.line = 61
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 286
+operation.line = 61
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 291
+operation.line = 61
+vizop = "optional_jump"
+offset = 15
+newPC = 293
+condition = false
+------
+operation
+operation.args = "15,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 294
+operation.line = 61
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 295
+operation.line = 61
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 296
+operation.line = 61
+vizop = "add"
+------
+operation
+operation.args = "49"
+operation.code = 49
+operation.name = "call"
+operation.pc = 297
+operation.line = 61
+vizop = "call"
+offset = -15
+newPC = 281
+------
+operation
+operation.args = "-15,51"
+operation.code = 51
+operation.name = "enter"
+operation.pc = 282
+operation.line = 60
+vizop = "enter"
+psize = 1
+lsize = 2
+------
+operation
+operation.args = "1,2,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 285
+operation.line = 61
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 286
+operation.line = 61
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 291
+operation.line = 61
+vizop = "optional_jump"
+offset = 15
+newPC = 293
+condition = false
+------
+operation
+operation.args = "15,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 294
+operation.line = 61
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 295
+operation.line = 61
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 296
+operation.line = 61
+vizop = "add"
+------
+operation
+operation.args = "49"
+operation.code = 49
+operation.name = "call"
+operation.pc = 297
+operation.line = 61
+vizop = "call"
+offset = -15
+newPC = 281
+------
+operation
+operation.args = "-15,51"
+operation.code = 51
+operation.name = "enter"
+operation.pc = 282
+operation.line = 60
+vizop = "enter"
+psize = 1
+lsize = 2
+------
+operation
+operation.args = "1,2,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 285
+operation.line = 61
+vizop = "load"
+address = 0
+
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 286
+operation.line = 61
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 291
+operation.line = 61
+vizop = "optional_jump"
+offset = 15
+newPC = 293
+condition = false
+------
+operation
+operation.args = "15,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 294
+operation.line = 61
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 295
+operation.line = 61
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "23"
+operation.code = 23
+operation.name = "add"
+operation.pc = 296
+operation.line = 61
+vizop = "add"
+------
+operation
+operation.args = "49"
+operation.code = 49
+operation.name = "call"
+operation.pc = 297
+operation.line = 61
+vizop = "call"
+offset = -15
+newPC = 281
+------
+operation
+operation.args = "-15,51"
+operation.code = 51
+operation.name = "enter"
+operation.pc = 282
+operation.line = 60
+vizop = "enter"
+psize = 1
+lsize = 2
+------
+operation
+operation.args = "1,2,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 285
+operation.line = 61
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 286
+operation.line = 61
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,48"
+operation.code = 48
+operation.name = "jge"
+operation.pc = 291
+operation.line = 61
+vizop = "optional_jump"
+offset = 15
+newPC = 305
+condition = true
+------
+operation
+operation.args = "15,22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 306
+operation.line = 62
+vizop = "const"
+value = -2
+------
+operation
+operation.args = "-2,7"
+operation.code = 7
+operation.name = "store_0"
+operation.pc = 311
+operation.line = 62
+vizop = "store"
+address = 0
+------
+operation
+operation.args = "2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 312
+operation.line = 63
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "52"
+operation.code = 52
+operation.name = "exit"
+operation.pc = 313
+operation.line = 63
+vizop = "exit"
+------
+operation
+operation.args = "50"
+operation.code = 50
+operation.name = "return"
+operation.pc = 314
+operation.line = 63
+vizop = "return"
+newPC = 299
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 300
+operation.line = 61
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "24"
+operation.code = 24
+operation.name = "sub"
+operation.pc = 301
+operation.line = 61
+vizop = "sub"
+------
+operation
+operation.args = "7"
+operation.code = 7
+operation.name = "store_0"
+operation.pc = 302
+operation.line = 61
+vizop = "store"
+address = 0
+------
+operation
+operation.args = "42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 303
+operation.line = 62
+vizop = "jmp"
+offset = 9
+newPC = 311
+------
+operation
+operation.args = "9,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 312
+operation.line = 63
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "52"
+operation.code = 52
+operation.name = "exit"
+operation.pc = 313
+operation.line = 63
+vizop = "exit"
+------
+operation
+operation.args = "50"
+operation.code = 50
+operation.name = "return"
+operation.pc = 314
+operation.line = 63
+vizop = "return"
+newPC = 299
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 300
+operation.line = 61
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "24"
+operation.code = 24
+operation.name = "sub"
+operation.pc = 301
+operation.line = 61
+vizop = "sub"
+------
+operation
+operation.args = "7"
+operation.code = 7
+operation.name = "store_0"
+operation.pc = 302
+operation.line = 61
+vizop = "store"
+address = 0
+------
+operation
+operation.args = "42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 303
+operation.line = 62
+vizop = "jmp"
+offset = 9
+newPC = 311
+------
+operation
+operation.args = "9,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 312
+operation.line = 63
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "52"
+operation.code = 52
+operation.name = "exit"
+operation.pc = 313
+operation.line = 63
+vizop = "exit"
+------
+operation
+operation.args = "50"
+operation.code = 50
+operation.name = "return"
+operation.pc = 314
+operation.line = 63
+vizop = "return"
+newPC = 299
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 300
+operation.line = 61
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "24"
+operation.code = 24
+operation.name = "sub"
+operation.pc = 301
+operation.line = 61
+vizop = "sub"
+------
+operation
+operation.args = "7"
+operation.code = 7
+operation.name = "store_0"
+operation.pc = 302
+operation.line = 61
+vizop = "store"
+address = 0
+------
+operation
+operation.args = "42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 303
+operation.line = 62
+vizop = "jmp"
+offset = 9
+newPC = 311
+------
+operation
+operation.args = "9,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 312
+operation.line = 63
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "52"
+operation.code = 52
+operation.name = "exit"
+operation.pc = 313
+operation.line = 63
+vizop = "exit"
+------
+operation
+operation.args = "50"
+operation.code = 50
+operation.name = "return"
+operation.pc = 314
+operation.line = 63
+vizop = "return"
+newPC = 299
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 300
+operation.line = 61
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "24"
+operation.code = 24
+operation.name = "sub"
+operation.pc = 301
+operation.line = 61
+vizop = "sub"
+------
+operation
+operation.args = "7"
+operation.code = 7
+operation.name = "store_0"
+operation.pc = 302
+operation.line = 61
+vizop = "store"
+address = 0
+------
+operation
+operation.args = "42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 303
+operation.line = 62
+vizop = "jmp"
+offset = 9
+newPC = 311
+------
+operation
+operation.args = "9,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 312
+operation.line = 63
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "52"
+operation.code = 52
+operation.name = "exit"
+operation.pc = 313
+operation.line = 63
+vizop = "exit"
+------
+operation
+operation.args = "50"
+operation.code = 50
+operation.name = "return"
+operation.pc = 314
+operation.line = 63
+vizop = "return"
+newPC = 299
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 300
+operation.line = 61
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "24"
+operation.code = 24
+operation.name = "sub"
+operation.pc = 301
+operation.line = 61
+vizop = "sub"
+------
+operation
+operation.args = "7"
+operation.code = 7
+operation.name = "store_0"
+operation.pc = 302
+operation.line = 61
+vizop = "store"
+address = 0
+------
+operation
+operation.args = "42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 303
+operation.line = 62
+vizop = "jmp"
+offset = 9
+newPC = 311
+------
+operation
+operation.args = "9,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 312
+operation.line = 63
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "52"
+operation.code = 52
+operation.name = "exit"
+operation.pc = 313
+operation.line = 63
+vizop = "exit"
+------
+operation
+operation.args = "50"
+operation.code = 50
+operation.name = "return"
+operation.pc = 314
+operation.line = 63
+vizop = "return"
+newPC = 299
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 300
+operation.line = 61
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "24"
+operation.code = 24
+operation.name = "sub"
+operation.pc = 301
+operation.line = 61
+vizop = "sub"
+------
+operation
+operation.args = "7"
+operation.code = 7
+operation.name = "store_0"
+operation.pc = 302
+operation.line = 61
+vizop = "store"
+address = 0
+------
+operation
+operation.args = "42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 303
+operation.line = 62
+vizop = "jmp"
+offset = 9
+newPC = 311
+------
+operation
+operation.args = "9,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 312
+operation.line = 63
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "52"
+operation.code = 52
+operation.name = "exit"
+operation.pc = 313
+operation.line = 63
+vizop = "exit"
+------
+operation
+operation.args = "50"
+operation.code = 50
+operation.name = "return"
+operation.pc = 314
+operation.line = 63
+vizop = "return"
+newPC = 299
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 300
+operation.line = 61
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "24"
+operation.code = 24
+operation.name = "sub"
+operation.pc = 301
+operation.line = 61
+vizop = "sub"
+------
+operation
+operation.args = "7"
+operation.code = 7
+operation.name = "store_0"
+operation.pc = 302
+operation.line = 61
+vizop = "store"
+address = 0
+------
+operation
+operation.args = "42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 303
+operation.line = 62
+vizop = "jmp"
+offset = 9
+newPC = 311
+------
+operation
+operation.args = "9,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 312
+operation.line = 63
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "52"
+operation.code = 52
+operation.name = "exit"
+operation.pc = 313
+operation.line = 63
+vizop = "exit"
+------
+operation
+operation.args = "50"
+operation.code = 50
+operation.name = "return"
+operation.pc = 314
+operation.line = 63
+vizop = "return"
+newPC = 299
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 300
+operation.line = 61
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "24"
+operation.code = 24
+operation.name = "sub"
+operation.pc = 301
+operation.line = 61
+vizop = "sub"
+------
+operation
+operation.args = "7"
+operation.code = 7
+operation.name = "store_0"
+operation.pc = 302
+operation.line = 61
+vizop = "store"
+address = 0
+------
+operation
+operation.args = "42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 303
+operation.line = 62
+vizop = "jmp"
+offset = 9
+newPC = 311
+------
+operation
+operation.args = "9,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 312
+operation.line = 63
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "52"
+operation.code = 52
+operation.name = "exit"
+operation.pc = 313
+operation.line = 63
+vizop = "exit"
+------
+operation
+operation.args = "50"
+operation.code = 50
+operation.name = "return"
+operation.pc = 314
+operation.line = 63
+vizop = "return"
+newPC = 299
+------
+operation
+operation.args = "16"
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 300
+operation.line = 61
+vizop = "const"
+value = 1
+------
+operation
+operation.args = "24"
+operation.code = 24
+operation.name = "sub"
+operation.pc = 301
+operation.line = 61
+vizop = "sub"
+------
+operation
+operation.args = "7"
+operation.code = 7
+operation.name = "store_0"
+operation.pc = 302
+operation.line = 61
+vizop = "store"
+address = 0
+------
+operation
+operation.args = "42"
+operation.code = 42
+operation.name = "jmp"
+operation.pc = 303
+operation.line = 62
+vizop = "jmp"
+offset = 9
+newPC = 311
+------
+operation
+operation.args = "9,2"
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 312
+operation.line = 63
+vizop = "load"
+address = 0
+------
+operation
+operation.args = "52"
+operation.code = 52
+operation.name = "exit"
+operation.pc = 313
+operation.line = 63
+vizop = "exit"
+------
+operation
+operation.args = "50"
+operation.code = 50
+operation.name = "return"
+operation.pc = 314
+operation.line = 63
+vizop = "return"
+newPC = 343
+------
+operation
+operation.args = "12"
+operation.code = 12
+operation.name = "putstatic"
+operation.pc = 344
+operation.line = 71
+vizop = "putstatic"
+address = 0
+------
+operation
+operation.args = "0,11"
+operation.code = 11
+operation.name = "getstatic"
+operation.pc = 347
+operation.line = 72
+vizop = "getstatic"
+address = 0
+------
+operation
+operation.args = "0,22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 350
+operation.line = 72
+vizop = "const"
+value = -11
+------
+operation
+operation.args = "-11,44"
+operation.code = 44
+operation.name = "jne"
+operation.pc = 355
+operation.line = 72
+vizop = "optional_jump"
+offset = 6
+newPC = 357
+condition = false
+------
+operation
+operation.args = "6,19"
+operation.code = 19
+operation.name = "const_4"
+operation.pc = 358
+operation.line = 72
+vizop = "const"
+value = 4
+------
+operation
+operation.args = "15"
+operation.code = 15
+operation.name = "const_0"
+operation.pc = 359
+operation.line = 72
+vizop = "const"
+value = 0
+------
+operation
+operation.args = "54"
+operation.code = 54
+operation.name = "print"
+operation.pc = 360
+operation.line = 72
+vizop = "print"
+value = 4
+length = -1
+------
+operation
+operation.args = "22"
+operation.code = 22
+operation.name = "const"
+operation.pc = 361
+operation.line = 73
+vizop = "const"
+value = 10
+------
+operation
+operation.args = "10,15"
+operation.code = 15
+operation.name = "const_0"
+operation.pc = 366
+operation.line = 73
+vizop = "const"
+value = 0
+------
+operation
+operation.args = "56"
+operation.code = 56
+operation.name = "bprint"
+operation.pc = 367
+operation.line = 73
+vizop = "bprint"
+value = "\n"
+length = -1
+------
+operation
+operation.args = "52"
+operation.code = 52
+operation.name = "exit"
+operation.pc = 368
+operation.line = 75
+vizop = "exit"
+------
+operation
+operation.args = "50"
+operation.code = 50
+operation.name = "return"
+operation.pc = 369
+operation.line = 75
+vizop = "return"
+newPC = 369
+exit = true
+

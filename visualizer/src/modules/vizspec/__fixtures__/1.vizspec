@@ -1,0 +1,585 @@
+########################
+# REGIONS              #
+########################
+
+declare region data {
+  name = "Static Data / Global"
+  type = "addressable"
+  [[pointers]]
+    name = "data"
+    type = "root_pointer"
+}
+
+declare region heap {
+  name = "Heap"
+  type = "addressable"
+  [[pointers]]
+    name = "heap"
+    type = "root_pointer"
+  [[pointers]]
+    name = "free"
+}
+
+declare region local {
+  name = "Method Stack"
+  type = "stack"
+  [[pointers]]
+      name = "pstack"
+      type = "root_pointer"
+  [[pointers]]
+      name = "fp"
+  [[pointers]]
+      name = "sp"
+      type = "stack_pointer"
+}
+
+declare region estack {
+  name = "Expression Stack"
+  type = "stack"
+  isExpressionStack = true
+  [[pointers]]
+    name = "estack"
+    type = "root_pointer"
+  [[pointers]]
+    name = "esp"
+    type = "stack_pointer"
+}
+
+########################
+# TYPES                #
+########################
+
+declare type constant {
+  name = "Constant"
+  [visualization]
+    color = "#88eeee"
+}
+
+declare type result {
+  name = "Calculation Operation Result"
+  [visualization]
+    color = "#ffeeaa"
+}
+
+declare type return_pc {
+  name = "Return PC"
+  [visualization]
+    color = "#88aaee"
+}
+
+declare type stored_fp {
+  name = "Stored FP"
+  [visualization]
+    color = "#88aaee"
+}
+
+declare type object {
+  name = "Object"
+  hasFields = true
+  [visualization]
+    color = "#ffbbaa"
+}
+
+declare type array {
+  name = "Array"
+  hasFields = true
+  [visualization]
+    color = "#ffddee"
+}
+
+########################
+# FUNCTIONS            #
+########################
+
+function test (a, b) {
+  return a * b + 2;
+}
+
+########################
+# OPERATIONS           #
+########################
+
+init {
+  log("Starting program");
+}
+
+operation load {
+  name = "Load"
+  [[input]]
+    name = "address"
+    type = "number"
+} with action {
+  let fp = getPointer('fp');
+  let entry = getRegion('local').get(fp + address);
+
+  getRegion('estack').push(createReferenceEntry({
+    entry,
+    region: 'local'
+  }));
+}
+  
+operation store {
+  name = "Store"
+  [[input]]
+    name = "address"
+    type = "number"
+} with action {
+  let entry = getRegion('estack').pop();
+  let fp = getPointer('fp');
+
+  getRegion('local').set(fp + address, createReferenceEntry({
+    entry,
+    region: 'local'
+  }));
+}
+
+operation getstatic {
+  name = "Get Static"
+  [[input]] 
+    name = "address"
+    type = "number"
+} with action {
+  let entry = getRegion('data').get(address);
+
+  getRegion('estack').push(createReferenceEntry({
+    entry,
+    region: 'data'
+  }));
+}
+
+operation putstatic {
+  name = "Put Static"
+  [[input]]
+    name = "address"
+    type = "number"
+} with action {
+  let entry = getRegion('estack').pop();
+
+  getRegion('data').set(address, createReferenceEntry({
+    entry,
+    region: 'data'
+  }));
+}
+
+operation getfield {
+  name = "Get Field"
+  [[input]]
+    name = "address"
+    type = "number"
+} with action {
+  let addr = getRegion('estack').pop().value();
+  let entry = getRegion('heap').get(addr + address);
+
+  getRegion('estack').push(createReferenceEntry({
+    entry,
+    region: 'heap'
+  }));
+}
+
+operation putfield {
+  name = "Put Field"
+  [[input]]
+    name = "address"
+    type = "number"
+} with action {
+  let val = getRegion('estack').pop();
+  let addr = getRegion('estack').pop().value();
+
+  getRegion('heap').set(addr + address, createReferenceEntry({
+    val,
+    region: 'heap'
+  }));
+}
+
+operation const {
+  name = "Constant"
+  [[input]]
+    name = "value"
+    type = "number"
+} with action {
+  let entry = createEntry('constant', { value, size: 4 });
+
+  getRegion('estack').push(entry);
+}
+
+operation add {
+  name = "Add"
+} with action {
+  let val2 = getRegion('estack').pop().value();
+  let val1 = getRegion('estack').pop().value();
+  let entry = createEntry('result', { value: val1 + val2, size: 4 });
+
+  getRegion('estack').push(entry);
+}
+
+operation sub {
+  name = "Subtract"
+} with action {
+  let val2 = getRegion('estack').pop().value();
+  let val1 = getRegion('estack').pop().value();
+  let entry = createEntry('result', { value: val1 - val2, size: 4 });
+
+  getRegion('estack').push(entry);
+}
+
+operation mul {
+  name = "Multiply"
+} with action {
+  let val2 = getRegion('estack').pop().value();
+  let val1 = getRegion('estack').pop().value();
+  let entry = createEntry('result', { value: val1 * val2, size: 4 });
+
+  getRegion('estack').push(entry);
+}
+
+operation div {
+  name = "Divide"
+} with action {
+  let val2 = getRegion('estack').pop().value();
+  let val1 = getRegion('estack').pop().value();
+  let entry = createEntry('result', { value: val1 / val2, size: 4 });
+
+  getRegion('estack').push(entry);
+}
+
+operation rem {
+  name = "Remainder"
+} with action {
+  let val2 = getRegion('estack').pop().value();
+  let val1 = getRegion('estack').pop().value();
+  let entry = createEntry('result', { value: val1 % val2, size: 4 });
+
+  getRegion('estack').push(entry);
+}
+
+operation neg {
+  name = "Negate"
+} with action {
+  let val = getRegion('estack').pop().value();
+  let entry = createEntry('result', { value: -val, size: 4 });
+
+  getRegion('estack').push(entry);
+}
+
+operation shl {
+  name = "Shift Left"
+} with action {
+  let val2 = getRegion('estack').pop().value();
+  let val1 = getRegion('estack').pop().value();
+  let entry = createEntry('result', { value: val1 << val2, size: 4 });
+
+  getRegion('estack').push(entry);
+}
+
+operation shr {
+  name = "Shift Right"
+} with action {
+  let val2 = getRegion('estack').pop().value();
+  let val1 = getRegion('estack').pop().value();
+  let entry = createEntry('result', { value: val1 >> val2, size: 4 });
+
+  getRegion('estack').push(entry);
+}
+
+# local[b1] = local[b1] + b2;
+operation inc {
+  name = "Increment"
+  [[input]]
+    name = "b1"
+    type = "number"
+  [[input]]
+    name = "b2"
+    type = "number"
+} with action {
+  let fp = getPointer('fp');
+  let off = fp + b1;
+
+  let entry = getRegion('local').get(off);
+  let val = entry.value();
+
+  entry.setValue(val + b2);
+}
+
+operation new {
+  name = "New Object"
+  [[input]]
+    name = "allocSize"
+    type = "number"
+  [[input]]
+    # The interpreter does some weird stuff with the free pointer
+    # So we just pass the updated free pointer as an argument
+    name = "nextFree"
+    type = "number"
+} with action {
+  // Get and update free pointer
+  let addr = getPoiner('free');
+  setPointer('free', nextFree);
+
+  // Create entry
+  let objectEntry = createEntry('object', { addr, size: allocSize });
+  getRegion('heap').set(addr, objectEntry);
+
+  // Push address to estack
+  let addrEntry = createEntry('constant', { value: addr, size: 4 });
+  getRegion('estack').push(addrEntry);
+}
+
+operation newarray {
+  name = "New Array"
+  [[input]]
+    name = "isByte"
+    type = "boolean"
+  [[input]]
+    name = "allocSize"
+    type = "number"
+  [[input]]
+    name = "nextFree"
+    type = "number"
+  [[input]]
+    name = "length"
+    type = "number"
+} with action {
+  // Get and update free pointer
+  let addr = getPoiner('free');
+  setPointer('free', nextFree);
+
+  // Create entry
+  let arrayEntry = createEntry('array', { addr, size: allocSize });
+  getRegion('heap').set(addr, arrayEntry);
+
+  // Add length to array
+  let lengthEntry = createEntry('constant', { value: length, size: 4 });
+  arrayEntry.setField(0, lengthEntry);
+
+  // Push address to estack
+  let addrEntry = createEntry('constant', { value: addr + 1, size: 4 });
+  getRegion('estack').push(addrEntry);
+}
+
+operation aload {
+  name = "Array Load"
+} with action {
+  let index = getRegion('estack').pop().value();
+  let addr = getRegion('estack').pop().value();
+
+  let arrayEntry = getRegion('heap').get(addr);
+  let valueEntry = arrayEntry.getField(index);
+
+  valueEntry.setSize(4);
+
+  getRegion('estack').push(valueEntry);
+}
+
+operation astore {
+  name = "Array Store"
+} with action {
+  let valueEntry = getRegion('estack').pop();
+  let index = getRegion('estack').pop().value();
+  let addr = getRegion('estack').pop().value();
+
+  valueEntry.setSize(4);
+
+  let arrayEntry = getRegion('heap').get(addr);
+  arrayEntry.setField(index, valueEntry);
+}
+
+operation baload {
+  name = "Byte Array Load"
+} with action {
+  let index = getRegion('estack').pop().value();
+  let addr = getRegion('estack').pop().value();
+
+  let arrayEntry = getRegion('heap').get(addr);
+  let valueEntry = arrayEntry.getField(index);
+
+  valueEntry.setSize(1);
+
+  getRegion('estack').push(valueEntry);
+}
+
+operation bastore {
+  name = "Byte Array Store"
+} with action {
+  let valueEntry = getRegion('estack').pop();
+  let index = getRegion('estack').pop().value();
+  let addr = getRegion('estack').pop().value();
+
+  valueEntry.setSize(1);
+
+  let arrayEntry = getRegion('heap').get(addr);
+  arrayEntry.setField(index, valueEntry);
+}
+
+operation arraylength {
+  name = "Array Length"
+} with action {
+  let addr = getRegion('estack').pop().value();
+
+  let arrayEntry = getRegion('heap').get(addr);
+  let lengthEntry = arrayEntry.getField(0);
+
+  lengthEntry.setSize(4);
+
+  getRegion('estack').push(lengthEntry);
+}
+
+operation pop {
+  name = "Pop"
+} with action {
+  getRegion('estack').pop();
+}
+
+operation dup {
+  name = "Duplicate"
+} with action {
+  let entry = getRegion('estack').pop();
+  getRegion('estack').push(entry);
+  getRegion('estack').push(entry);
+}
+
+operation dup2 {
+  name = "Duplicate 2"
+} with action {
+  let entry1 = getRegion('estack').pop();
+  let entry2 = getRegion('estack').pop();
+
+  getRegion('estack').push(entry2);
+  getRegion('estack').push(entry1);
+  getRegion('estack').push(entry2);
+  getRegion('estack').push(entry1);
+}
+
+operation jmp {
+  name = "Jump"
+  [[input]]
+    name = "newPC"
+    type = "number"
+} with action {
+  setPointer('pc', newPC);
+}
+
+operation optional_jump {
+  name = "Optional Jump - {{operation.identifier}}"
+  altIdentifiers = ["jeq", "jne", "jlt", "jle", "jgt", "jge"]
+  [[input]]
+    name = "newPC"
+    type = "number"
+  [[input]]
+    name = "condition"
+    type = "boolean"
+} with action {
+  let entry2 = getRegion('estack').pop();
+  let entry1 = getRegion('estack').pop();
+
+  let operand = '==';
+  if (operation.identifier == 'jne') operand = '!=';
+  if (operation.identifier == 'jlt') operand = '<';
+  if (operation.identifier == 'jle') operand = '<=';
+  if (operation.identifier == 'jgt') operand = '>';
+  if (operation.identifier == 'jge') operand = '>=';
+  
+  if (condition) {
+    setPointer('pc', newPC);
+  }
+}
+
+operation call {
+  name = "Call"
+  [[input]]
+    name = "newPC"
+    type = "number"
+} with action {
+  let currentPC = getPointer('pc');
+  let returnPCEntry = createEntry('return_pc', { value: currentPC, size: 4 });
+
+  getRegion('local').push(returnPCEntry);
+
+  setPointer('pc', newPC);
+}
+
+operation return {
+  name = "Return"
+} with action {
+  let returnPCEntry = getRegion('local').pop();
+  let returnPC = returnPCEntry.value();
+
+  setPointer('pc', returnPC);
+}
+
+operation enter {
+  name = "Enter"
+  [[input]]
+    name = "psize"
+    type = "number"
+  [[input]]
+    name = "lsize"
+    type = "number"
+} with action {
+  let sp = getPointer('sp');
+
+  getRegion('local').push(getPointer('fp'));
+  setPointer('fp', sp);
+
+  let fp = getPointer('fp');
+
+  for (let i = 0; i < psize; i++) {
+    getRegion('local').push(createEntry('stored_fp', { value: 0, size: 4 }));
+  }
+
+  let estack = getRegion('estack');
+  for (let i = psize - 1; i >= 0; i--) {
+    getRegion('local').set(fp + i, estack.pop());
+  }
+}
+
+operation exit {
+  name = "Exit"
+} with action {
+  let fp = getPointer('fp');
+  let sp = getPointer('sp');
+
+  setPointer('sp', fp);
+
+  let oldFP = getRegion('local').pop();
+  setPointer('fp', oldFP.value());
+}
+
+operation read {
+  name = "Read"
+  [[input]]
+    name = "value"
+    type = "number"
+  altIdentifiers = ["bread"]
+} with action {
+  let entry = createEntry('constant', { value, size: 4 });
+
+  getRegion('estack').push(entry);
+}
+
+operation print {
+  name = "Print"
+  [[input]]
+    name = "value"
+    type = "string"
+  altIdentifiers = ["bprint"]
+} with action {
+  getRegion('estack').pop();
+  getRegion('estack').pop();
+
+  log(`Print: ${value}`);
+}
+
+operation nop {
+  name = "No Operation"
+} with action {
+  // Do nothing
+}
+
+operation trap {
+  name = "Trap"
+  [[input]]
+    name = "val"
+    type = "number"
+} with action {
+  fatal(message);
+}

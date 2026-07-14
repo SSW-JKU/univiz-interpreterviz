@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bytecode Visualization</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script id="__DATA__" type="application/json">
+    {"trace": "abc", "url": "https://master.tobiasherber.org"}
+  </script>
+
+  <script type="module">
+    let content = JSON.parse(document.getElementById('__DATA__').textContent);
+    let app = document.getElementById('app');
+
+    let snappy = await import('https://esm.run/snappyjs');
+
+    let encoder = new TextEncoder();
+    let compressed = snappy.compress(encoder.encode(content.trace));
+
+    let base64 = btoa(String.fromCharCode(...compressed));
+
+    if (base64.length < 65_000) {
+      let url = new URL(content.url);
+      url.searchParams.set('c', 'snappy');
+      url.searchParams.set('trace', base64);
+      window.location.replace(url.toString());
+    } else {
+      let iframe = document.createElement('iframe');
+      iframe.src = '" + visualizerUrl + "/?iframe-ingest=true';
+      iframe.style.position = 'fixed';
+      iframe.style.top = 0;
+      iframe.style.left = 0;
+      iframe.style.right = 0;
+      iframe.style.bottom = 0;
+      iframe.style.border = 0;
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+
+      app.appendChild(iframe);
+
+      iframe.addEventListener('load', () => {
+        setTimeout(() => {
+          iframe.contentWindow.postMessage({
+            type: 'ingest',
+            ...content
+          }, '*');
+        }, 100);
+      });
+    }
+  </script>
+</body>
+
+</html>

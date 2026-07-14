@@ -1,0 +1,542 @@
+------
+source
+program Demo3
+{
+	void main()
+	    int a, b, c, d, e;
+	{
+	    if (a < 1 && b == 2 && c > 3 || d <= 4 && e >= 5) {
+	        a = 1;
+        } else {
+            a = 2;
+	    }
+	}
+}
+------
+value = bytecode
+[
+  {
+    "pc": 1,
+    "line": 5,
+    "vizop": "enter",
+    "opcode": "enter 0 5"
+  },
+  {
+    "pc": 4,
+    "line": 6,
+    "vizop": "load",
+    "opcode": "load_0"
+  },
+  {
+    "pc": 5,
+    "line": 6,
+    "vizop": "const",
+    "opcode": "const_1"
+  },
+  {
+    "pc": 6,
+    "line": 6,
+    "vizop": "optional_jump",
+    "opcode": "jge 13"
+  },
+  {
+    "pc": 9,
+    "line": 6,
+    "vizop": "load",
+    "opcode": "load_1"
+  },
+  {
+    "pc": 10,
+    "line": 6,
+    "vizop": "const",
+    "opcode": "const_2"
+  },
+  {
+    "pc": 11,
+    "line": 6,
+    "vizop": "optional_jump",
+    "opcode": "jne 8"
+  },
+  {
+    "pc": 14,
+    "line": 6,
+    "vizop": "load",
+    "opcode": "load_2"
+  },
+  {
+    "pc": 15,
+    "line": 6,
+    "vizop": "const",
+    "opcode": "const_3"
+  },
+  {
+    "pc": 16,
+    "line": 6,
+    "vizop": "optional_jump",
+    "opcode": "jgt 14"
+  },
+  {
+    "pc": 19,
+    "line": 6,
+    "vizop": "load",
+    "opcode": "load_3"
+  },
+  {
+    "pc": 20,
+    "line": 6,
+    "vizop": "const",
+    "opcode": "const_4"
+  },
+  {
+    "pc": 21,
+    "line": 6,
+    "vizop": "optional_jump",
+    "opcode": "jgt 14"
+  },
+  {
+    "pc": 24,
+    "line": 6,
+    "vizop": "load",
+    "opcode": "load 4"
+  },
+  {
+    "pc": 26,
+    "line": 6,
+    "vizop": "const",
+    "opcode": "const_5"
+  },
+  {
+    "pc": 27,
+    "line": 6,
+    "vizop": "optional_jump",
+    "opcode": "jlt 8"
+  },
+  {
+    "pc": 30,
+    "line": 7,
+    "vizop": "const",
+    "opcode": "const_1"
+  },
+  {
+    "pc": 31,
+    "line": 7,
+    "vizop": "store",
+    "opcode": "store_0"
+  },
+  {
+    "pc": 32,
+    "line": 8,
+    "vizop": "jmp",
+    "opcode": "jmp 5"
+  },
+  {
+    "pc": 35,
+    "line": 9,
+    "vizop": "const",
+    "opcode": "const_2"
+  },
+  {
+    "pc": 36,
+    "line": 9,
+    "vizop": "store",
+    "opcode": "store_0"
+  },
+  {
+    "pc": 37,
+    "line": 12,
+    "vizop": "exit",
+    "opcode": "exit"
+  },
+  {
+    "pc": 38,
+    "line": 12,
+    "vizop": "return",
+    "opcode": "return"
+  }
+]
+------
+value = initialPointers
+{
+  "pc": 0,
+  "esp": 0,
+  "fp": 0,
+  "free": 1,
+  "sp": 0
+}
+------
+value = symbolTypes
+{
+  "symbolTypes": [
+    {
+      "id": 717386707,
+      "kind": "array",
+      "name": "None[]",
+      "itemTypeId": 1537358694,
+      "line": 28,
+      "uses": [
+        28
+      ],
+      "variables": []
+    },
+    {
+      "id": 1537358694,
+      "kind": "atomic",
+      "name": "None",
+      "line": 28,
+      "uses": [
+        28
+      ],
+      "variables": []
+    },
+    {
+      "id": 1513712028,
+      "kind": "struct",
+      "name": "Class",
+      "line": 28,
+      "uses": [
+        28
+      ],
+      "variables": []
+    },
+    {
+      "id": 1975358023,
+      "kind": "atomic",
+      "name": "int",
+      "line": 28,
+      "uses": [
+        28,
+        4,
+        4,
+        4
+      ],
+      "variables": []
+    },
+    {
+      "id": 747464370,
+      "kind": "atomic",
+      "name": "char",
+      "line": 28,
+      "uses": [
+        28
+      ],
+      "variables": []
+    }
+  ],
+  "variables": [
+    {
+      "id": 0,
+      "name": "noObj",
+      "symbolTypeId": 1537358694,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 1,
+      "name": "null",
+      "symbolTypeId": 1513712028,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 2,
+      "name": "i",
+      "symbolTypeId": 1975358023,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 3,
+      "name": "ch",
+      "symbolTypeId": 747464370,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 4,
+      "name": "arr",
+      "symbolTypeId": 717386707,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 5,
+      "name": "a",
+      "symbolTypeId": 1975358023,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 6,
+      "name": "b",
+      "symbolTypeId": 1975358023,
+      "address": 1,
+      "initialValue": 0
+    },
+    {
+      "id": 7,
+      "name": "c",
+      "symbolTypeId": 1975358023,
+      "address": 2,
+      "initialValue": 0
+    },
+    {
+      "id": 8,
+      "name": "d",
+      "symbolTypeId": 1975358023,
+      "address": 3,
+      "initialValue": 0
+    },
+    {
+      "id": 9,
+      "name": "e",
+      "symbolTypeId": 1975358023,
+      "address": 4,
+      "initialValue": 0
+    }
+  ],
+  "programName": "Demo3",
+  "methods": [
+    {
+      "id": 0,
+      "name": "chr",
+      "line": -1,
+      "locals": [
+        {
+          "id": 2,
+          "name": "i",
+          "symbolTypeId": 1975358023,
+          "address": 0,
+          "initialValue": 0
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "ord",
+      "line": -1,
+      "locals": [
+        {
+          "id": 3,
+          "name": "ch",
+          "symbolTypeId": 747464370,
+          "address": 0,
+          "initialValue": 0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "len",
+      "line": -1,
+      "locals": [
+        {
+          "id": 4,
+          "name": "arr",
+          "symbolTypeId": 717386707,
+          "address": 0,
+          "initialValue": 0
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "main",
+      "line": 3,
+      "locals": [
+        {
+          "id": 5,
+          "name": "a",
+          "symbolTypeId": 1975358023,
+          "address": 0,
+          "initialValue": 0
+        },
+        {
+          "id": 6,
+          "name": "b",
+          "symbolTypeId": 1975358023,
+          "address": 1,
+          "initialValue": 0
+        },
+        {
+          "id": 7,
+          "name": "c",
+          "symbolTypeId": 1975358023,
+          "address": 2,
+          "initialValue": 0
+        },
+        {
+          "id": 8,
+          "name": "d",
+          "symbolTypeId": 1975358023,
+          "address": 3,
+          "initialValue": 0
+        },
+        {
+          "id": 9,
+          "name": "e",
+          "symbolTypeId": 1975358023,
+          "address": 4,
+          "initialValue": 0
+        }
+      ]
+    }
+  ],
+  "globals": [],
+  "constants": []
+}
+------
+start
+name = "Demo3"
+------
+operation
+operation.code = 51
+operation.name = "enter"
+operation.pc = 1
+operation.line = 5
+vizop = "enter"
+psize = 0
+lsize = 5
+operation.args = "0,5"
+------
+operation
+operation.code = 2
+operation.name = "load_0"
+operation.pc = 4
+operation.line = 6
+vizop = "load"
+address = 0
+------
+operation
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 5
+operation.line = 6
+vizop = "const"
+value = 1
+------
+operation
+operation.code = 48
+operation.name = "jge"
+operation.pc = 6
+operation.line = 6
+vizop = "optional_jump"
+offset = 13
+newPC = 8
+condition = false
+operation.args = "13"
+------
+operation
+operation.code = 3
+operation.name = "load_1"
+operation.pc = 9
+operation.line = 6
+vizop = "load"
+address = 1
+------
+operation
+operation.code = 17
+operation.name = "const_2"
+operation.pc = 10
+operation.line = 6
+vizop = "const"
+value = 2
+------
+operation
+operation.code = 44
+operation.name = "jne"
+operation.pc = 11
+operation.line = 6
+vizop = "optional_jump"
+offset = 8
+newPC = 18
+condition = true
+operation.args = "8"
+------
+operation
+operation.code = 5
+operation.name = "load_3"
+operation.pc = 19
+operation.line = 6
+vizop = "load"
+address = 3
+------
+operation
+operation.code = 19
+operation.name = "const_4"
+operation.pc = 20
+operation.line = 6
+vizop = "const"
+value = 4
+------
+operation
+operation.code = 47
+operation.name = "jgt"
+operation.pc = 21
+operation.line = 6
+vizop = "optional_jump"
+offset = 14
+newPC = 23
+condition = false
+operation.args = "14"
+------
+operation
+operation.code = 1
+operation.name = "load"
+operation.pc = 24
+operation.line = 6
+vizop = "load"
+address = 4
+fp = 1
+operation.args = "4"
+------
+operation
+operation.code = 20
+operation.name = "const_5"
+operation.pc = 26
+operation.line = 6
+vizop = "const"
+value = 5
+------
+operation
+operation.code = 45
+operation.name = "jlt"
+operation.pc = 27
+operation.line = 6
+vizop = "optional_jump"
+offset = 8
+newPC = 34
+condition = true
+operation.args = "8"
+------
+operation
+operation.code = 17
+operation.name = "const_2"
+operation.pc = 35
+operation.line = 9
+vizop = "const"
+value = 2
+------
+operation
+operation.code = 7
+operation.name = "store_0"
+operation.pc = 36
+operation.line = 9
+vizop = "store"
+address = 0
+------
+operation
+operation.code = 52
+operation.name = "exit"
+operation.pc = 37
+operation.line = 12
+vizop = "exit"
+------
+operation
+operation.code = 50
+operation.name = "return"
+operation.pc = 38
+operation.line = 12
+vizop = "return"
+newPC = 38
+exit = true
+
