@@ -106,11 +106,6 @@ sudo docker compose up -d --remove-orphans
 sudo docker compose ps
 ```
 
-The `HEAD` segment resolves to the repository's current default branch. To
-apply a future Compose-file update immediately, rerun the download and the three
-Docker Compose commands. Image-only updates are installed automatically by
-Watchtower.
-
 For HTTPS, add the block from [`deploy/Caddyfile.example`](deploy/Caddyfile.example)
 to the host's Caddy configuration, replacing the domain if necessary:
 
