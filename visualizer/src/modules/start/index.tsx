@@ -24,6 +24,8 @@ let DemoHighlight = styled.button`
   margin: 0px auto 30px auto;
 `;
 
+const demoBaseUrl = `${import.meta.env.BASE_URL}demos/`;
+
 export let Start = ({ isDemo }: { isDemo?: boolean }) => {
   let navigate = useNavigateWithPrefix();
   let [transitioning, setTransitioning] = useState(false);
@@ -149,27 +151,27 @@ export let Start = ({ isDemo }: { isDemo?: boolean }) => {
             <DemoItems
               demo={[
                 {
-                  id: 'https://ssw.jku.at/General/Staff/Weninger/Projects/InterpreterViz/VISSOFT25/demos/Demo1.v0t',
+                  id: `${demoBaseUrl}1_Arithmetic.v0t`,
                   title: 'Arithmetic',
                   description: 'Simple program with arithmetic operations'
                 },
                 {
-                  id: 'https://ssw.jku.at/General/Staff/Weninger/Projects/InterpreterViz/VISSOFT25/demos/Demo2.v0t',
+                  id: `${demoBaseUrl}2_HeapAllocation.v0t`,
                   title: 'Heap Allocation',
                   description: 'Array and object allocation on the heap'
                 },
                 {
-                  id: 'https://ssw.jku.at/General/Staff/Weninger/Projects/InterpreterViz/VISSOFT25/demos/Demo3.v0t',
+                  id: `${demoBaseUrl}3_ControlFlow.v0t`,
                   title: 'Control Flow',
                   description: 'Complex program showcasing short-circuit evaluation'
                 },
                 {
-                  id: 'https://ssw.jku.at/General/Staff/Weninger/Projects/InterpreterViz/VISSOFT25/demos/Error.v0t',
+                  id: `${demoBaseUrl}4_InterpreterError.v0t`,
                   title: 'Interpreter Error',
                   description: 'Trace with an interpreter error'
                 },
                 {
-                  id: 'https://ssw.jku.at/General/Staff/Weninger/Projects/InterpreterViz/VISSOFT25/demos/DifferentBytecodes.v0t',
+                  id: `${demoBaseUrl}5_ReferenceBytecode.v0t`,
                   title: 'Reference Bytecode',
                   description: 'Bytecode diverging from the reference implementation'
                 }

@@ -8,7 +8,7 @@ This markdown document can be thought of as a reduced version of `ArtifactDescri
 
 ## Artifact and Paper Links
 
-* **Artifact Download:** The complete artifact package, including the visualizer source code, demo traces, the paper, and a supplementary video, can be downloaded from Zenodo: [https://doi.org/10.5281/zenodo.21353423](https://doi.org/10.5281/zenodo.21353423)
+* **Artifact Download:** The complete artifact package, including the visualizer source code, demo traces, the paper, and a supplementary video, can be downloaded from Zenodo: [https://doi.org/10.5281/zenodo.16362219](https://doi.org/10.5281/zenodo.16362219)
 * **Live Demo:** A hosted instance of the visualization tool, pre-loaded with the demo traces described below, is available at: [https://ssw.jku.at/General/Staff/Weninger/Projects/InterpreterViz/VISSOFT25/demo](https://ssw.jku.at/General/Staff/Weninger/Projects/InterpreterViz/VISSOFT25/demo)
 * **Source and Container:** The source repository is available at [https://github.com/SSW-JKU/univiz-interpreterviz](https://github.com/SSW-JKU/univiz-interpreterviz), and commits to its main branch publish the container image at [GitHub Container Registry](https://github.com/orgs/SSW-JKU/packages/container/package/univiz-interpreterviz).
 * **Accepted Paper:** A copy of the accepted paper (`Paper.pdf`) is included in the root of the artifact package.
@@ -24,7 +24,7 @@ The artifact archive contains the following:
 * `Video.mp4`: A supplementary video demonstrating the tool.
 * `visualizer.zip`: A compressed folder containing the complete source code for the web-based visualization tool.
 * `demos.zip`: A compressed folder containing the five example trace files used to demonstrate the tool's features.
-* `deploy/`: Docker Compose and Caddy examples for long-term server hosting.
+* `deploy/`: Docker Compose and reverse-proxy examples for long-term server hosting.
 * `.github/workflows/docker-image.yml`: The workflow that builds and publishes the production container image.
 * `LICENSE.md`: The license file for the artifact.
 
@@ -74,10 +74,8 @@ Open `http://localhost:3000`. The production container serves the Vite bundle
 through nginx and includes a health check and an `index.html` fallback for
 direct links to application routes.
 
-For either local option, load one of the example traces from `demos.zip` to test
-the installation. The manual setup was tested on recent macOS, Windows, and
-Linux systems with Node.js v18+ and Yarn Classic v1.22.19. The Docker setup was
-tested with Docker v28.2.2.
+For either local option, click **Continue with Demo** or load a trace from
+`demos.zip` manually. The setup was tested on recent macOS, Windows, and Linux systems with Node.js v18+ and Yarn Classic v1.22.19. The Docker setup was tested with Docker v28.2.2.
 
 #### 3. Long-Term Run on a Server (Docker Compose)
 
@@ -122,7 +120,8 @@ After DNS points the domain to the server, reload Caddy:
 sudo systemctl reload caddy
 ```
 
-If you use nginx instead, add this `location` block to the existing HTTPS
+If you use nginx instead, add the `location` block from
+[`deploy/nginx.conf.example`](deploy/nginx.conf.example) to the existing HTTPS
 `server` block for your domain:
 
 ```nginx

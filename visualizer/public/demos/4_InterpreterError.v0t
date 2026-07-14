@@ -1,0 +1,281 @@
+------
+source
+program Error
+	int value;
+{
+	void main () {
+		value = 4 + 1;
+	}
+}
+------
+value = bytecode
+[
+  {
+    "pc": 1,
+    "line": 4,
+    "vizop": "enter",
+    "opcode": "enter 0 0"
+  },
+  {
+    "pc": 4,
+    "line": 5,
+    "vizop": "const",
+    "opcode": "const_4"
+  },
+  {
+    "pc": 5,
+    "line": 5,
+    "vizop": "const",
+    "opcode": "const_1"
+  },
+  {
+    "pc": 6,
+    "line": 5,
+    "vizop": "add",
+    "opcode": "add"
+  },
+  {
+    "pc": 7,
+    "line": 5,
+    "vizop": "add",
+    "opcode": "add"
+  },
+  {
+    "pc": 8,
+    "line": 5,
+    "vizop": "putstatic",
+    "opcode": "putstatic 0"
+  },
+  {
+    "pc": 11,
+    "line": 7,
+    "vizop": "exit",
+    "opcode": "exit"
+  },
+  {
+    "pc": 12,
+    "line": 7,
+    "vizop": "return",
+    "opcode": "return"
+  }
+]
+------
+value = initialPointers
+{
+  "pc": 0,
+  "esp": 0,
+  "fp": 0,
+  "free": 1,
+  "sp": 0
+}
+------
+value = symbolTypes
+{
+  "symbolTypes": [
+    {
+      "id": 457233904,
+      "kind": "atomic",
+      "name": "None",
+      "line": -1,
+      "uses": [
+        -1
+      ],
+      "variables": []
+    },
+    {
+      "id": 290658609,
+      "kind": "atomic",
+      "name": "char",
+      "line": -1,
+      "uses": [
+        -1
+      ],
+      "variables": []
+    },
+    {
+      "id": 1577213552,
+      "kind": "struct",
+      "name": "Class",
+      "line": -1,
+      "uses": [
+        -1
+      ],
+      "variables": []
+    },
+    {
+      "id": 1289479439,
+      "kind": "array",
+      "name": "None[]",
+      "itemTypeId": 457233904,
+      "line": -1,
+      "uses": [
+        -1
+      ],
+      "variables": []
+    },
+    {
+      "id": 1510067370,
+      "kind": "atomic",
+      "name": "int",
+      "line": -1,
+      "uses": [
+        -1,
+        2,
+        2
+      ],
+      "variables": []
+    }
+  ],
+  "variables": [
+    {
+      "id": 0,
+      "name": "noObj",
+      "symbolTypeId": 457233904,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 1,
+      "name": "null",
+      "symbolTypeId": 1577213552,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 2,
+      "name": "i",
+      "symbolTypeId": 1510067370,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 3,
+      "name": "ch",
+      "symbolTypeId": 290658609,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 4,
+      "name": "arr",
+      "symbolTypeId": 1289479439,
+      "address": 0,
+      "initialValue": 0
+    },
+    {
+      "id": 5,
+      "name": "value",
+      "symbolTypeId": 1510067370,
+      "address": 0,
+      "initialValue": 0
+    }
+  ],
+  "programName": "Error",
+  "methods": [
+    {
+      "id": 0,
+      "name": "chr",
+      "line": -1,
+      "locals": [
+        {
+          "id": 2,
+          "name": "i",
+          "symbolTypeId": 1510067370,
+          "address": 0,
+          "initialValue": 0
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "ord",
+      "line": -1,
+      "locals": [
+        {
+          "id": 3,
+          "name": "ch",
+          "symbolTypeId": 290658609,
+          "address": 0,
+          "initialValue": 0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "len",
+      "line": -1,
+      "locals": [
+        {
+          "id": 4,
+          "name": "arr",
+          "symbolTypeId": 1289479439,
+          "address": 0,
+          "initialValue": 0
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "main",
+      "line": 4,
+      "locals": []
+    }
+  ],
+  "globals": [
+    {
+      "id": 5,
+      "name": "value",
+      "symbolTypeId": 1510067370,
+      "address": 0,
+      "initialValue": 0
+    }
+  ],
+  "constants": []
+}
+------
+start
+name = "Error"
+------
+operation
+operation.code = 51
+operation.name = "enter"
+operation.pc = 1
+operation.line = 4
+vizop = "enter"
+psize = 0
+lsize = 0
+operation.args = "0,0"
+------
+operation
+operation.code = 19
+operation.name = "const_4"
+operation.pc = 4
+operation.line = 5
+vizop = "const"
+value = 4
+------
+operation
+operation.code = 16
+operation.name = "const_1"
+operation.pc = 5
+operation.line = 5
+vizop = "const"
+value = 1
+------
+operation
+operation.code = 23
+operation.name = "add"
+operation.pc = 6
+operation.line = 5
+vizop = "add"
+------
+error
+message = "Expression stack underflow"
+hint = "The interpreter tried to pop a value from the expression stack but the expression stack was empty."
+region = "estack"
+operation.code = 23
+operation.name = "add"
+operation.pc = 7
+operation.line = 5
+vizop = "add"
+
