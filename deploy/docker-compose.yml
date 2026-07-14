@@ -1,0 +1,17 @@
+services:
+  interpreterviz-app:
+    image: ghcr.io/ssw-jku/univiz-interpreterviz:latest
+    container_name: interpreterviz-app
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3004:3000"
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  interpreterviz-watchtower:
+    image: containrrr/watchtower:latest
+    container_name: interpreterviz-watchtower
+    restart: unless-stopped
+    command: --interval 120 --cleanup --label-enable
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

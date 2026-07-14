@@ -198,34 +198,46 @@ The source code is grouped into several modules located in the \texttt{src/modul
 
 This section describes how to set up the artifacts attached to this document. Additionally, a hosted instance of our project is provided at \url{https://ssw.jku.at/General/Staff/Weninger/Projects/InterpreterViz/VISSOFT25/demo}.
 
-\paragraph{Required tools} A set of tools, such as runtimes and package managers, is required to run, build, and develop our visualization tool.
+\paragraph{1) Manual build and run} Extract \texttt{visualizer.zip} and open a terminal in the extracted folder. With Node.js\footnote{Node.js \url{https://nodejs.org/en}} and Yarn Classic\footnote{Yarn Classic \url{https://classic.yarnpkg.com/en/docs}} installed, build and serve the production bundle with:
 
-\begin{itemize}
-    \item \emph{Node.js}, a server-side runtime for JavaScript \footnote{Node.js \url{https://nodejs.org/en}}. We recommend using Node v22.9.0, which has also been used for development and testing.
+\begin{lstlisting}[language={},numbers=none,basicstyle=\ttfamily\scriptsize]
+yarn
+yarn build
+yarn preview --host 0.0.0.0 --port 3000
+\end{lstlisting}
 
-    \item \emph{Yarn Classic}, a package manager for JavaScript-based packages. Please note that we use Yarn Classic (v1.x) and not Yarn (v4.x at the time of writing) \footnote{Yarn \url{https://classic.yarnpkg.com/en/docs}}
-\end{itemize}
+The visualizer is then available at \url{http://localhost:3000}. For development, \texttt{yarn dev} starts Vite directly, normally at \url{http://localhost:5173}.
 
-\paragraph{Project Setup} The steps to run the development version of our project are as follows:
+\paragraph{2) Local Docker run} As a separate local option, install Docker\footnote{Docker \url{https://www.docker.com/}} and run one container without Docker Compose:
 
-\begin{enumerate}
-    \item Extract \texttt{visualizer.zip} of our artifact, open a terminal, and navigate into the extracted \texttt{visualizer} folder.
-    \item Install dependencies by entering \texttt{yarn} in the terminal.
-    \item Start the development server by running \texttt{yarn dev} in the terminal.
-\end{enumerate}
+\begin{lstlisting}[language={},numbers=none,basicstyle=\ttfamily\scriptsize]
+docker build -t visualizer .
+docker run --rm -p 3000:3000 visualizer
+\end{lstlisting}
 
-After executing these steps, a local development server is started. It can be reached using the URL display in the terminal. There, users are presented with the web-interface of our visualization tool.
+The container serves the visualizer at \url{http://localhost:3000}.
 
-\paragraph{Automated Docker Setup} In addition to the manual setup described previously, we also provide an automated setup powered by Docker \footnote{Docker https://www.docker.com/}. The Docker setup uses validated working versions of the required tools, thereby ensuring an optimal environment for our visualization tool. The steps to run the Docker setup are as follows:
+\paragraph{3) Long-term run on a server (Docker Compose)} Commits to \url{https://github.com/SSW-JKU/univiz-interpreterviz} publish \texttt{latest} and commit-specific images to \url{ghcr.io/ssw-jku/univiz-interpreterviz}. The repository's \texttt{deploy/docker-compose.yml} runs \texttt{interpreterviz-app} on host loopback port $3004$ and \texttt{interpreterviz-watchtower}, which checks for a new labeled image every 120 seconds. On a Linux server with Docker Engine and its Compose plugin, run:
 
-\begin{enumerate}
-    \item Download and install Docker (version v28.2.2 was used for testing).
-    \item Extract \texttt{visualizer.zip} of our artifact, open a terminal, and navigate into the extracted \texttt{visualizer} folder.
-    \item Build the Docker image by entering \texttt{docker build -t visualizer .} in the terminal (make sure to enter the period after \texttt{visualizer}).
-    \item Create a Docker container based on the newly built image using \texttt{docker run --rm -p 3000:3000 visualizer}.
-\end{enumerate}
+\begin{lstlisting}[language={},numbers=none,basicstyle=\ttfamily\scriptsize]
+sudo mkdir -p /opt/interpreterviz
+cd /opt/interpreterviz
+sudo curl -fsSL -o docker-compose.yml \
+  https://raw.githubusercontent.com/SSW-JKU/univiz-interpreterviz/HEAD/deploy/docker-compose.yml
+sudo docker compose pull
+sudo docker compose up -d --remove-orphans
+sudo docker compose ps
+\end{lstlisting}
 
-After executing these steps, a Docker container listening to port $3000$ has been started. The container runs a web server available at \texttt{http://localhost:3000} that serves our visualization tool.
+The loopback binding prevents direct public access. The included \texttt{Caddyfile.example} lets a host-level Caddy\footnote{Caddy \url{https://caddyserver.com/}} instance provide HTTPS (replace the domain if needed):
+
+\begin{lstlisting}[language={},numbers=none,basicstyle=\ttfamily\scriptsize]
+interpreter.univiz.org {
+  reverse_proxy 127.0.0.1:3004
+}
+\end{lstlisting}
+
+After DNS points to the server, add the block to Caddy and reload it. Watchtower then installs future image updates automatically; download the Compose file again only when its service configuration changes.
 
 \section{A Guided Tour Through our\\Visualization Tool}
 

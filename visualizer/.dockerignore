@@ -1,3 +1,11 @@
+.git
+.github
+.idea
+.vscode
 node_modules
 .wrangler
 dist
+logs
+*.log
+*.local
+*.zip
